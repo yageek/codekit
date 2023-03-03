@@ -11,11 +11,14 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 default = []
 ffi-interface = []
 jni-interface = ['ffi-interface', 'jni']
+android = ['android_logger', 'jni-interface']
 
 [dependencies]
 lazy_static = "1.4.0"
 libc = { version = "0.2", optional = true }
 jni = { version = "0.19.0", optional = true }
+log = "0.4.17"
+android_logger = { version = "0.9", optional = true }
 
 [build-dependencies]
 cbindgen = { version = "0.24.3", optional = true }
