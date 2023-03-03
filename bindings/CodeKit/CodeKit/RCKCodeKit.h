@@ -9,11 +9,52 @@
 #import <CoreImage/CoreImage.h>
 NS_ASSUME_NONNULL_BEGIN
 
+/// The protocol implemented by all internals elements
+@protocol RCKCodeGenerator <CIFilter>
+
+/// The border width of the code. Default to 0.
+@property(nonatomic, assign) NSInteger borderWidth;
+
+/// The quiet space of the code. Default to 7.
+@property(nonatomic, assign) NSInteger quietSpace;
+
+/// The barcode height. Default to 50.
+@property(nonatomic, assign) NSInteger barCodeHeight;
+
+/// The code value
+@property(nonatomic, copy) NSString *codeValue;
+@end
+
 /// The interface implementing ``CIFilterContructor``
 @interface RCKCodeKit : NSObject <CIFilterConstructor>
 
 /// Register the filters into CoreImage.
 -(void) registerFilters;
+
+///:nodoc:
+- (instancetype) init NS_UNAVAILABLE;
+
+/// The shared instance used to initialise the difference filters.
+@property(nonatomic, class, strong, readonly) RCKCodeKit *sharedInstance NS_SWIFT_NAME(shared);
+
+/// Get an EAN8 generator filter
++ (CIFilter<RCKCodeGenerator> *) ean8GeneratorFilter NS_SWIFT_NAME(ean8Generator());
+
+/// Get an EAN13 generator filter
++ (CIFilter<RCKCodeGenerator> *) ean13GeneratorFilter NS_SWIFT_NAME(ean13Generator());
+
+/// Get an Code39 generator filter
++ (CIFilter<RCKCodeGenerator> *) code39GeneratorFilter NS_SWIFT_NAME(code39Generator());
+
+/// Get an Code93 generator filter
++ (CIFilter<RCKCodeGenerator> *) code93GeneratorFilter NS_SWIFT_NAME(code93Generator());
+
+/// Get an Codabar generator filter
++ (CIFilter<RCKCodeGenerator> *) codabarGeneratorFilter NS_SWIFT_NAME(codabarGenerator());
+
+/// Get an I2of5 generator filter
++ (CIFilter<RCKCodeGenerator> *) i2of5GeneratorFilter NS_SWIFT_NAME(i2of5Generator());
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -5,6 +5,3 @@ bindings/libcodekit_core/.DS_Store
 .DS_Store
 bindings/libcodekit_core/lib
 bindings/CodeKit/archives/*.xcarchive
-bindings/CodeKit/xcframeworks
-bindings/CodeKitAndroid/app/app/build
-bindings/CodeKitAndroid/app/.idea

@@ -13,8 +13,18 @@
 #import "RCKCodabarCodeGenerator.h"
 #import "RCKI2of5CodeGenerator.h"
 
+@implementation RCKCodeKit
 
-@implementation RCKCodeKit 
+#pragma mark - Init
++ (RCKCodeKit *)sharedInstance {
+    static dispatch_once_t onceToken;
+    static RCKCodeKit *instance;
+    dispatch_once(&onceToken, ^{
+        instance = [[RCKCodeKit alloc] init];
+    });
+    return instance;
+}
+
 - (void)registerFilters {
     // Initialize
     [CIFilter registerFilterName:@"RCKEAN8CodeGenerator" constructor:self classAttributes:@{
@@ -49,7 +59,7 @@
     }];
 }
 
-
+#pragma mark - CIFilterConstructor
 - (CIFilter *)filterWithName:(NSString *)name {
     
     if ([name isEqualToString:@"RCKEAN8CodeGenerator"]){
@@ -68,4 +78,30 @@
     return nil;
     
 }
+
+#pragma mark - Properties
++ (CIFilter<RCKCodeGenerator> *) ean8GeneratorFilter {
+    return [[RCKEAN8CodeGenerator alloc] init];
+}
+
++ (CIFilter<RCKCodeGenerator> *) ean13GeneratorFilter {
+    return [[RCKEAN13CodeGenerator alloc] init];
+}
+
++ (CIFilter<RCKCodeGenerator> *) code39GeneratorFilter {
+    return [[RCKCode39CodeGenerator alloc] init];
+}
+
++ (CIFilter<RCKCodeGenerator> *) code93GeneratorFilter {
+    return [[RCKCode93CodeGenerator alloc] init];
+}
+
++ (CIFilter<RCKCodeGenerator> *) codabarGeneratorFilter {
+    return [[RCKCodabarCodeGenerator alloc] init];
+}
+
++ (CIFilter<RCKCodeGenerator> *) i2of5GeneratorFilter {
+    return [[RCKI2of5CodeGenerator alloc] init];
+}
+
 @end

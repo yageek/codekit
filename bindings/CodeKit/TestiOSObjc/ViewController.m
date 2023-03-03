@@ -21,10 +21,9 @@
 	
 	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 	
-	CIFilter *filter = [CIFilter filterWithName:@"RCKCode93CodeGenerator"];
-	[filter setValue:@"TEST93" forKey:@"codeValue"];
-	
-	CIImage *image = filter.outputImage;
+    CIFilter<RCKCodeGenerator> *filter = [RCKCodeKit code93GeneratorFilter];
+    filter.codeValue = @"TEST93";
+    CIImage *image = filter.outputImage;
 	
 	CGFloat scaleX = CGRectGetWidth(self.imageView.frame)/CGRectGetWidth(image.extent);
 	CGAffineTransform tr = CGAffineTransformScale(CGAffineTransformIdentity, scaleX, scaleX);

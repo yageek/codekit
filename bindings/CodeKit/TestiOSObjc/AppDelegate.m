@@ -12,14 +12,12 @@
 @end
 
 @implementation AppDelegate {
-	RCKCodeKit *instance;
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
-	instance = [[RCKCodeKit alloc] init];
-	[instance registerFilters];
+	[[RCKCodeKit sharedInstance] registerFilters];
 	return YES;
 }
 
