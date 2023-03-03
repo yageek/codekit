@@ -26,10 +26,10 @@
 		34944C4729AF64CB00BA3C2F /* RCKCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AE0328DA49AC00244043 /* RCKCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34944C4829AF64D000BA3C2F /* RCKCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3AE0428DA49AC00244043 /* RCKCodeKit.m */; };
 		34944C4929AF64D500BA3C2F /* CodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AD9F28DA03F100244043 /* CodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34944C5129AF7A5A00BA3C2F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */; };
-		34944C5229AF7A5A00BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		34944C5429AF7A6E00BA3C2F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */; };
-		34944C5529AF7A6E00BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34944C5829AF7E8000BA3C2F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */; };
+		34944C5929AF7E8000BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34944C5B29AF7E8400BA3C2F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */; };
+		34944C5C29AF7E8400BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADA028DA03F100244043 /* CodeKit.docc */; };
 		34C3ADA728DA03F100244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
 		34C3ADAC28DA03F100244043 /* CodeKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADAB28DA03F100244043 /* CodeKitTests.m */; };
@@ -69,24 +69,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		34944C5329AF7A5A00BA3C2F /* Embed Frameworks */ = {
+		34944C5A29AF7E8000BA3C2F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				34944C5229AF7A5A00BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */,
+				34944C5929AF7E8000BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		34944C5629AF7A6F00BA3C2F /* Embed Frameworks */ = {
+		34944C5D29AF7E8400BA3C2F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				34944C5529AF7A6E00BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */,
+				34944C5C29AF7E8400BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +100,7 @@
 		34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CodeKitCore.xcframework; path = ../libcodekit_core/lib/iOS/release/AppleSilicon/CodeKitCore.xcframework; sourceTree = "<group>"; };
 		34944C3229AF64B000BA3C2F /* CodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CodeKitCore.xcframework; path = ../libcodekit_core/lib/Apple/release/AppleSilicon/CodeKitCore.xcframework; sourceTree = "<group>"; };
+		34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CodeKitCore.xcframework; path = ../libcodekit_core/lib/Apple/release/CodeKitCore.xcframework; sourceTree = "<group>"; };
 		34C3AD9C28DA03F100244043 /* CodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C3AD9F28DA03F100244043 /* CodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeKit.h; sourceTree = "<group>"; };
 		34C3ADA028DA03F100244043 /* CodeKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CodeKit.docc; sourceTree = "<group>"; };
@@ -138,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34944C5429AF7A6E00BA3C2F /* CodeKitCore.xcframework in Frameworks */,
+				34944C5B29AF7E8400BA3C2F /* CodeKitCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34944C5129AF7A5A00BA3C2F /* CodeKitCore.xcframework in Frameworks */,
+				34944C5829AF7E8000BA3C2F /* CodeKitCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +236,7 @@
 		34C3ADD528DA1D6700244043 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34944C5729AF7E8000BA3C2F /* CodeKitCore.xcframework */,
 				34944C4A29AF661300BA3C2F /* CodeKitCore.xcframework */,
 				34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */,
 				34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */,
@@ -306,7 +308,7 @@
 				34944C2E29AF64B000BA3C2F /* Sources */,
 				34944C2F29AF64B000BA3C2F /* Frameworks */,
 				34944C3029AF64B000BA3C2F /* Resources */,
-				34944C5629AF7A6F00BA3C2F /* Embed Frameworks */,
+				34944C5D29AF7E8400BA3C2F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,7 +327,7 @@
 				34C3AD9828DA03F100244043 /* Sources */,
 				34C3AD9928DA03F100244043 /* Frameworks */,
 				34C3AD9A28DA03F100244043 /* Resources */,
-				34944C5329AF7A5A00BA3C2F /* Embed Frameworks */,
+				34944C5A29AF7E8000BA3C2F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -558,7 +560,7 @@
 				PRODUCT_NAME = CodeKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
@@ -590,7 +592,7 @@
 				PRODUCT_NAME = CodeKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
