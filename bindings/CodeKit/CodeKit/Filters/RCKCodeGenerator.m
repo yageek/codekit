@@ -77,7 +77,7 @@
 	for(NSInteger i = 0; i < self.data.length; i++) {
 		[self.data getBytes:&value range:NSMakeRange(i, 1)];
 		
-		buff = value == 1 ? 0x0: 0xffffffff;
+		buff = value == '1' ? 0x0: 0xffffffff;
 		CFDataAppendBytes(codeLine, (UInt8*)&buff, 4);
 	}
 

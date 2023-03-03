@@ -29,11 +29,7 @@ pub struct CodeDescriptor {
 pub extern "C" fn codekit_free_descriptor(ptr: *mut CodeDescriptor) {
     assert!(!ptr.is_null());
     unsafe {
-        drop(Vec::from_raw_parts(
-            (*ptr).bars,
-            (*ptr).bars_count,
-            (*ptr).bars_count,
-        ));
+        let _ = CString::from_raw((*ptr).bars);
     }
 }
 
