@@ -6,9 +6,19 @@
 //
 
 #import "RCKCodeGenerator.h"
-#import "RCKCodeDescriptor+Private.h"
+
 @implementation RCKCodeGenerator
-@synthesize barCodeDescriptor = _barCodeDescriptor;
+
+-(instancetype) init {
+	self = [super init];
+	
+	if (self) {
+		self.barCodeHeight = 50.0;
+		self.quietSpace = 7.0;
+		self.borderWidth = 0.0;
+	}
+	return self;
+}
 
 - (CIImage *)outputImage {
 	CGImageRef image = [self outputCGImage];
@@ -20,14 +30,16 @@
 }
 
 -(CGImageRef) outputCGImage {
+
+	if (!self.data || self.data.length < 1) {
+		return nil;
+	}
 	
-	if (!self.barCodeDescriptor) { return nil; }
-	
-	NSInteger totalBar = self.barCodeDescriptor.data.length;
+	NSInteger totalBar = self.data.length;
 	NSInteger bytesPerPixel = 4;
-	NSInteger barcodeHeight = (NSInteger)self.barCodeDescriptor.barCodeHeight;
-	NSInteger borderWidth = (NSInteger) self.barCodeDescriptor.borderWidth;
-	NSInteger quietSpace = (NSInteger)self.barCodeDescriptor.quietSpace;
+	NSInteger barcodeHeight = self.barCodeHeight;
+	NSInteger borderWidth = self.borderWidth;
+	NSInteger quietSpace = self.quietSpace;
 	
 	NSInteger totalHeight = barcodeHeight + 2*quietSpace + 2*borderWidth;
 	NSInteger totalWidth = totalBar + 2*quietSpace + 2*borderWidth;
@@ -62,16 +74,14 @@
 	// We add the bar elemeent
 	UInt32 buff;
 	UInt8 value;
-	for(NSInteger i = 0; i < self.barCodeDescriptor.data.length; i++) {
-		[self.barCodeDescriptor.data getBytes:&value range:NSMakeRange(i, 1)];
+	for(NSInteger i = 0; i < self.data.length; i++) {
+		[self.data getBytes:&value range:NSMakeRange(i, 1)];
 		
 		buff = value == 1 ? 0x0: 0xffffffff;
 		CFDataAppendBytes(codeLine, (UInt8*)&buff, 4);
 		
 	}
 
-	NSData *converted = (__bridge NSData*) codeLine;
-	NSLog(@"Data: %@", converted);
 	// We add the right spacing
 	CFDataAppendBytes(codeLine, emptyLine, quietSpace*bytesPerPixel);
 
@@ -102,5 +112,35 @@
 	
 	return image;
 }
+#pragma mark - Attributes
+- (NSDictionary *)customAttributes
+{
+	return @{
+		@"borderWidth": @{
+			kCIAttributeMin       : @0,
+			kCIAttributeType: kCIAttributeTypeScalar,
+			kCIAttributeDisplayName: @"borderWidth",
+			kCIAttributeDescription: @"The border width of the filter",
+			kCIAttributeDefault: @0,
+		},
+		@"quietSpace": @{
+			kCIAttributeMin       : @0,
+			kCIAttributeDisplayName: @"quietSpace",
+			kCIAttributeDescription: @"The quiet space for the code",
+			kCIAttributeDefault: @7,
+		},
+		@"barCodeHeight": @{
+			kCIAttributeMin       : @0,
+			kCIAttributeDisplayName: @"barCodeHeight",
+			kCIAttributeDescription: @"The height of the bar code",
+			kCIAttributeDefault: @50,
+		}
+   };
+}
+#pragma mark - Exception management
 
+- (void)raiseErrorForCode:(NSInteger)code {
+	NSException *exception = [NSException exceptionWithName:@"CodeKitCoreException" reason:@"the internal core library failed to create an error" userInfo:nil];
+	@throw exception;
+}
 @end

@@ -21,9 +21,9 @@
 	
 	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 	
-	CIFilter *filter = [CIFilter filterWithName:@"RCKEAN8CodeGenerator"];
+	CIFilter *filter = [CIFilter filterWithName:@"RCKEAN13CodeGenerator"];
 	NSLog(@"Attributes: %@", filter.attributes);
-	[filter setValue:@"4719-5127" forKey:@"codeValue"];
+	[filter setValue:@"978-0-306-40615-7" forKey:@"codeValue"];
 	
 	CIImage *image = filter.outputImage;
 	

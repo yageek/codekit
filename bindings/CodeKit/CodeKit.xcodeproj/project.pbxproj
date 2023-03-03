@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3405732928DB9708006F4F4C /* RCKEAN13CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */; };
+		3405732A28DB9708006F4F4C /* RCKEAN13CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */; };
 		34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADA028DA03F100244043 /* CodeKit.docc */; };
 		34C3ADA728DA03F100244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
 		34C3ADAC28DA03F100244043 /* CodeKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADAB28DA03F100244043 /* CodeKitTests.m */; };
 		34C3ADAD28DA03F100244043 /* CodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AD9F28DA03F100244043 /* CodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34C3ADB828DA0A3200244043 /* RCKCodeDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADB628DA0A3200244043 /* RCKCodeDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34C3ADB928DA0A3200244043 /* RCKCodeDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADB728DA0A3200244043 /* RCKCodeDescriptor.m */; };
-		34C3ADBC28DA0CFA00244043 /* RCKCodeDescriptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADBA28DA0CFA00244043 /* RCKCodeDescriptor+Private.h */; };
 		34C3ADC028DA116300244043 /* RCKCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */; };
 		34C3ADC128DA116300244043 /* RCKCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */; };
 		34C3ADDF28DA1DB300244043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADDE28DA1DB300244043 /* AppDelegate.m */; };
@@ -23,6 +22,11 @@
 		34C3ADEA28DA1DB400244043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C3ADE928DA1DB400244043 /* Assets.xcassets */; };
 		34C3ADED28DA1DB400244043 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C3ADEB28DA1DB400244043 /* LaunchScreen.storyboard */; };
 		34C3ADF028DA1DB400244043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADEF28DA1DB400244043 /* main.m */; };
+		34C3AE0128DA441900244043 /* RCKEAN8CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADFF28DA441900244043 /* RCKEAN8CodeGenerator.h */; };
+		34C3AE0228DA441900244043 /* RCKEAN8CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */; };
+		34C3AE0528DA49AC00244043 /* RCKCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AE0328DA49AC00244043 /* RCKCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		34C3AE0628DA49AC00244043 /* RCKCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3AE0428DA49AC00244043 /* RCKCodeKit.m */; };
+		34C3AE0728DA4C5600244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKEAN13CodeGenerator.h; sourceTree = "<group>"; };
+		3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKEAN13CodeGenerator.m; sourceTree = "<group>"; };
 		34C3AD9C28DA03F100244043 /* CodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C3AD9F28DA03F100244043 /* CodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeKit.h; sourceTree = "<group>"; };
 		34C3ADA028DA03F100244043 /* CodeKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CodeKit.docc; sourceTree = "<group>"; };
 		34C3ADA628DA03F100244043 /* CodeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C3ADAB28DA03F100244043 /* CodeKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeKitTests.m; sourceTree = "<group>"; };
-		34C3ADB628DA0A3200244043 /* RCKCodeDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCodeDescriptor.h; sourceTree = "<group>"; };
-		34C3ADB728DA0A3200244043 /* RCKCodeDescriptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCodeDescriptor.m; sourceTree = "<group>"; };
-		34C3ADBA28DA0CFA00244043 /* RCKCodeDescriptor+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCKCodeDescriptor+Private.h"; sourceTree = "<group>"; };
 		34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCodeGenerator.h; sourceTree = "<group>"; };
 		34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCodeGenerator.m; sourceTree = "<group>"; };
 		34C3ADDB28DA1DB300244043 /* TestiOSObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestiOSObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +61,10 @@
 		34C3ADEC28DA1DB400244043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34C3ADEE28DA1DB400244043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C3ADEF28DA1DB400244043 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34C3ADFF28DA441900244043 /* RCKEAN8CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKEAN8CodeGenerator.h; sourceTree = "<group>"; };
+		34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKEAN8CodeGenerator.m; sourceTree = "<group>"; };
+		34C3AE0328DA49AC00244043 /* RCKCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCodeKit.h; sourceTree = "<group>"; };
+		34C3AE0428DA49AC00244043 /* RCKCodeKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCodeKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +87,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C3AE0728DA4C5600244043 /* CodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3405732628DB96FA006F4F4C /* EAN */ = {
+			isa = PBXGroup;
+			children = (
+				34C3ADFF28DA441900244043 /* RCKEAN8CodeGenerator.h */,
+				34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */,
+				3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */,
+				3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */,
+			);
+			path = EAN;
+			sourceTree = "<group>";
+		};
+		3405732B28DB994D006F4F4C /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				3405732628DB96FA006F4F4C /* EAN */,
+				34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */,
+				34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
 		34C3AD9228DA03F100244043 = {
 			isa = PBXGroup;
 			children = (
@@ -111,12 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				34C3AD9F28DA03F100244043 /* CodeKit.h */,
-				34C3ADB628DA0A3200244043 /* RCKCodeDescriptor.h */,
-				34C3ADB728DA0A3200244043 /* RCKCodeDescriptor.m */,
 				34C3ADA028DA03F100244043 /* CodeKit.docc */,
-				34C3ADBA28DA0CFA00244043 /* RCKCodeDescriptor+Private.h */,
-				34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */,
-				34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */,
+				3405732B28DB994D006F4F4C /* Filters */,
+				34C3AE0328DA49AC00244043 /* RCKCodeKit.h */,
+				34C3AE0428DA49AC00244043 /* RCKCodeKit.m */,
 			);
 			path = CodeKit;
 			sourceTree = "<group>";
@@ -161,10 +188,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C3ADBC28DA0CFA00244043 /* RCKCodeDescriptor+Private.h in Headers */,
+				34C3AE0128DA441900244043 /* RCKEAN8CodeGenerator.h in Headers */,
 				34C3ADAD28DA03F100244043 /* CodeKit.h in Headers */,
 				34C3ADC028DA116300244043 /* RCKCodeGenerator.h in Headers */,
-				34C3ADB828DA0A3200244043 /* RCKCodeDescriptor.h in Headers */,
+				3405732928DB9708006F4F4C /* RCKEAN13CodeGenerator.h in Headers */,
+				34C3AE0528DA49AC00244043 /* RCKCodeKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,9 +325,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C3ADB928DA0A3200244043 /* RCKCodeDescriptor.m in Sources */,
 				34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */,
 				34C3ADC128DA116300244043 /* RCKCodeGenerator.m in Sources */,
+				34C3AE0228DA441900244043 /* RCKEAN8CodeGenerator.m in Sources */,
+				34C3AE0628DA49AC00244043 /* RCKCodeKit.m in Sources */,
+				3405732A28DB9708006F4F4C /* RCKEAN13CodeGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

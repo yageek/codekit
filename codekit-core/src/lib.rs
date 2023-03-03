@@ -8,7 +8,11 @@ pub use commons::{Code, CodeOptions};
 pub mod ffi {
     use std::{ffi::CStr, os::raw::c_char};
 
-    use crate::{commons::Barcode, ean::EAN8, CodeOptions};
+    use crate::{
+        commons::Barcode,
+        ean::{EAN13, EAN8},
+        CodeOptions,
+    };
 
     #[repr(C)]
     pub struct CodeDescriptor {
@@ -17,6 +21,7 @@ pub mod ffi {
         pub bars_count: usize,
     }
 
+    /// Free a code descriptor
     #[no_mangle]
     pub extern "C" fn codekit_free_descriptor(ptr: *mut CodeDescriptor) {
         assert!(!ptr.is_null());
@@ -29,21 +34,42 @@ pub mod ffi {
         }
     }
 
+    /// Create a descriptor for EAN8 code
     #[no_mangle]
     pub extern "C" fn codekit_code_create_EAN8(
         content: *const c_char,
         options: CodeOptions,
         value: *mut CodeDescriptor,
     ) -> i8 {
+        create_code_from_str::<EAN8>(content, options, value)
+    }
+
+    /// Create a descriptor for EAN8 code
+    #[no_mangle]
+    pub extern "C" fn codekit_code_create_EAN13(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        create_code_from_str::<EAN13>(content, options, value)
+    }
+
+    fn create_code_from_str<'a, T>(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8
+    where
+        T: Barcode<Input = &'a str>,
+    {
         assert!(!content.is_null());
         // We need to convert a string from C world
         let input_string = unsafe { CStr::from_ptr(content) };
 
         let input = input_string.to_str().unwrap();
 
-        match EAN8::make_descriptor(input, options) {
+        match T::make_descriptor(input, options) {
             Ok(code) => {
-                println!("Total bars: {}", code.bars().len());
                 unsafe {
                     (*value).options = code.options();
                     (*value).bars_count = code.bars().len();
@@ -56,10 +82,7 @@ pub mod ffi {
                 }
                 0
             }
-            Err(e) => {
-                println!("Error: {}", e);
-                -1
-            }
+            Err(e) => -1,
         }
     }
 }

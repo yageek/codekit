@@ -7,6 +7,7 @@
 
 #import "RCKCodeKit.h"
 #import "RCKEAN8CodeGenerator.h"
+#import "RCKEAN13CodeGenerator.h"
 @implementation RCKCodeKit 
 - (void)registerFilters {
 	// Initialize
@@ -15,7 +16,16 @@
 		kCIAttributeFilterCategories: @[kCICategoryGenerator]
 	}];
 }
+
+
 - (CIFilter *)filterWithName:(NSString *)name {
-	return [[RCKEAN8CodeGenerator alloc] init];
+	
+	if ([name isEqualToString:@"RCKEAN8CodeGenerator"]){
+		return [[RCKEAN8CodeGenerator alloc] init];
+	} else if ([name isEqualToString:@""]) {
+		return [[RCKEAN13CodeGenerator alloc] init];
+	}
+	return nil;
+
 }
 @end
