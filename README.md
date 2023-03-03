@@ -145,7 +145,7 @@ public native static String makeEAN8(String code) throws IOException;
 public native static String makeEAN13(String code) throws IOException;
 public native static String makeCodabar(String code) throws IOException;
 public native static String makeCode39(String code) throws IOException;
-public native static String makeCode93(String code);
+public native static String makeCode93(String code) throws IOException;
 public native static String makeI2Of5(String code) throws IOException;
 
 // Method to generate a bitmap from a string of bar
