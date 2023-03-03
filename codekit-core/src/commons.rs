@@ -89,6 +89,22 @@ where
         })
         .collect()
 }
+
+pub fn map_bits_to_vec_u16<T: Sized + BitAnd<u16> + Copy>(value: T, pattern_size: usize) -> Vec<u8>
+where
+    <T as BitAnd<u16>>::Output: PartialEq<u16>,
+{
+    (0..pattern_size)
+        .map(|i| {
+            let b = value & (1 << (pattern_size - 1 - i));
+            if b == 0 {
+                0
+            } else {
+                1
+            }
+        })
+        .collect()
+}
 /// Map a character pattern to bars
 /// This will map the patterns from bits to descriptors.
 /// For one pattern, one bit represents alternatively a gap and a bar

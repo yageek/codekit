@@ -3,7 +3,7 @@ use std::{collections::HashMap, marker::PhantomData};
 use lazy_static::lazy_static;
 
 use crate::{
-    commons::{narrow_wide_gar_bar, Barcode},
+    commons::{map_bits_to_vec, map_bits_to_vec_u16, narrow_wide_gar_bar, Barcode},
     Code,
 };
 
@@ -107,7 +107,7 @@ impl<'a> Code93<'a> {
             message.push(Code93::compute_k(&message));
 
             message.insert(0, '*');
-            message.insert(message.len() - 1, '*');
+            message.insert(message.len(), '*');
 
             let converted = message
                 .chars()
@@ -132,7 +132,7 @@ impl<'a> Barcode for Code93<'a> {
 
         let mut bars: Vec<_> = patterns
             .into_iter()
-            .flat_map(|pattern| narrow_wide_gar_bar(pattern, 9))
+            .flat_map(|pattern| map_bits_to_vec_u16(pattern, 9))
             .collect();
 
         bars.push(1);
@@ -142,11 +142,18 @@ impl<'a> Barcode for Code93<'a> {
 
 #[cfg(test)]
 mod tests {
+    use crate::{commons::Barcode, CodeOptions};
+
     use super::Code93;
 
     #[test]
     fn test_code_check() {
         assert_eq!('+', Code93::compute_c("TEST93"));
         assert_eq!('6', Code93::compute_c("TEST93+"));
+    }
+
+    #[test]
+    fn test_compute_elements() {
+        Code93::make_descriptor("TEST93", CodeOptions::default()).expect("invalid element");
     }
 }

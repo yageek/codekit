@@ -132,6 +132,7 @@ pub mod ffi {
 
                     // Now we need to move the elements to the heap
                     let mut vec = code.get_bars();
+                    // We shrink the data to have length == capacity
                     vec.shrink_to_fit();
                     (*value).bars = vec.as_mut_ptr();
                     std::mem::forget(vec);
