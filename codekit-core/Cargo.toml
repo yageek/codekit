@@ -8,12 +8,14 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [features]
-default = ["ffi-interface"]
+default = []
 ffi-interface = []
+jni-interface = ['ffi-interface', 'jni']
 
 [dependencies]
 lazy_static = "1.4.0"
 libc = { version = "0.2", optional = true }
+jni = { version = "0.19.0", optional = true }
 
 [build-dependencies]
 cbindgen = { version = "0.24.3", optional = true }

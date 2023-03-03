@@ -1,0 +1,7 @@
+{
+    "rust-analyzer.cargo.buildScripts.overrideCommand": null,
+    "rust-analyzer.cargo.features": [
+        "jni-interface",
+        "ffi-interface"
+    ]
+}
