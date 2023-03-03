@@ -18,13 +18,59 @@ public class CodeKit {
     private static final int WHITE_COLOR = 0xffffffff;
     private static final int BLACK_COLOR = 0xff000000;
 
+    /**
+     * Generate an EAN8 code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeEAN8(String code, CodeOptions options);
+
+    /**
+     * Generate an EAN13 code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeEAN13(String code, CodeOptions options);
+
+    /**
+     * Generate an Codabar code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeCodabar(String code, CodeOptions options);
+
+    /**
+     * Generate an Code39 code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeCode39(String code, CodeOptions options);
+
+    /**
+     * Generate an Code93 code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeCode93(String code, CodeOptions options);
+
+    /**
+     * Generate an Interleave 2 of 5 code
+     * @param code A string representing the code
+     * @param options The options to generate the code
+     * @return
+     */
     public native static CodeDescriptor makeI2Of5(String code, CodeOptions options);
 
+    /**
+     * Generate a bitmap image from a CodeDescriptor
+     * @param descriptor The descriptor representing the code
+     * @return
+     */
     public static Bitmap convertBitmap(CodeDescriptor descriptor) {
 
         final int totalBar = descriptor.bars.length;
