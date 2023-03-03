@@ -126,6 +126,29 @@ where
     bars
 }
 
+pub fn narrow_wide_gar_bar_u8<T: Sized + BitAnd<u8> + Copy + std::ops::Sub<u8>>(
+    pattern: T,
+    pattern_size: usize,
+) -> Vec<u8>
+where
+    <T as BitAnd<u8>>::Output: PartialEq<u8>,
+{
+    let mut bars: Vec<u8> = vec![];
+
+    for i in 0..pattern_size {
+        let value = if i % 2 == 0 { 1u8 } else { 0u8 };
+
+        let is_wide = (pattern & 1 << ((pattern_size) - 1 - i)) != 0;
+
+        bars.push(value);
+        if is_wide {
+            bars.push(value);
+            bars.push(value);
+        }
+    }
+    bars
+}
+
 #[cfg(test)]
 mod tests {
     use super::{map_bits_to_vec, narrow_wide_gar_bar};

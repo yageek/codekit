@@ -17,6 +17,9 @@ const EAN_PATTERNS: [[u8; 3]; 10] = [
     [0b0001011, 0b0010111, 0b1110100], //  9
 ];
 
+/// *NOTE*: Both index for L-Code in `eanPatterns` and values equal to 0. Same applies for G-code.
+/// See [Binary encoding of data digits into EAN-13 barcode]
+/// (https://en.wikipedia.org/wiki/International_Article_Number#Binary_encoding_of_data_digits_into_EAN-13_barcode)
 #[derive(Debug, Clone, Copy)]
 enum EANPatternCode {
     L,

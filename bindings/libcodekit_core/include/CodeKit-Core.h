@@ -48,3 +48,10 @@ int8_t codekit_code_create_code39(const char *content,
 int8_t codekit_code_create_code93(const char *content,
                                   struct CodeKitCodeOptions options,
                                   struct CodeKitCodeDescriptor *value);
+
+/**
+ * Create a descriptor for a Codabar code.
+ */
+int8_t codekit_code_create_codabar(const char *content,
+                                   struct CodeKitCodeOptions options,
+                                   struct CodeKitCodeDescriptor *value);

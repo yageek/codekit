@@ -5,8 +5,8 @@ use crate::{
     commons::{narrow_wide_gar_bar, Barcode},
     Code,
 };
-
 lazy_static! {
+    /// See https://en.wikipedia.org/wiki/Code_39
     static ref CHARACTERS_MAP: HashMap<char, u16> = {
         let mut m = HashMap::new();
         m.insert('A', 0b100001001);
@@ -56,6 +56,7 @@ lazy_static! {
         m
     };
 }
+
 #[derive(Debug, Clone, Copy)]
 pub enum Code39Error {
     InvalidMessage,

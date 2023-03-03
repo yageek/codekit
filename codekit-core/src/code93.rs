@@ -8,6 +8,7 @@ use crate::{
 };
 
 lazy_static! {
+    /// See: https://web.archive.org/web/20090225114452/http://www.barcodeisland.com/code93.phtml
     static ref CHARACTERS_MAP: HashMap<char, u16> = {
         let mut m = HashMap::new();
         m.insert('0', 0b100010100);
@@ -63,7 +64,7 @@ static INDEX_MAP: &[char] = &[
     'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-', '.',
     ' ', '$', '/', '+', '%', '*',
 ];
-
+#[derive(Debug, Clone, Copy)]
 pub enum Code93Error {
     InvalidMessage,
 }

@@ -1,3 +1,4 @@
+mod codabar;
 mod code39;
 mod code93;
 mod commons;
@@ -10,6 +11,7 @@ pub mod ffi {
     use std::{ffi::CStr, os::raw::c_char};
 
     use crate::{
+        codabar::Codabar,
         code39::Code39,
         code93::Code93,
         commons::Barcode,
@@ -78,6 +80,15 @@ pub mod ffi {
         create_code_from_str::<Code93>(content, options, value)
     }
 
+    /// Create a descriptor for a Codabar code.
+    #[no_mangle]
+    pub extern "C" fn codekit_code_create_codabar(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        create_code_from_str::<Codabar>(content, options, value)
+    }
     /// Internal generic method
     fn create_code_from_str<'a, T>(
         content: *const c_char,
