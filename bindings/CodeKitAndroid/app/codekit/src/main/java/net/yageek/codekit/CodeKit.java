@@ -3,6 +3,8 @@ package net.yageek.codekit;
 import android.graphics.Bitmap;
 
 
+import java.io.IOError;
+import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.Arrays;
 
@@ -22,43 +24,49 @@ public class CodeKit {
      * Generate an EAN8 code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeEAN8(String code);
+    public native static String makeEAN8(String code) throws IOException;
 
     /**
      * Generate an EAN13 code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeEAN13(String code);
+    public native static String makeEAN13(String code) throws IOException;
 
     /**
      * Generate an Codabar code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeCodabar(String code);
+    public native static String makeCodabar(String code) throws IOException;
 
     /**
      * Generate an Code39 code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeCode39(String code);
+    public native static String makeCode39(String code) throws IOException;
 
     /**
      * Generate an Code93 code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeCode93(String code);
+    public native static String makeCode93(String code) throws IOException;
 
     /**
      * Generate an Interleave 2 of 5 code
      * @param code A string representing the code
      * @return A string representing the bars (1 for black and 0 for white)
+     * @throws IOException
      */
-    public native static String makeI2Of5(String code);
+    public native static String makeI2Of5(String code) throws IOException;
 
     /**
      * Generate a bitmap image from a CodeDescriptor

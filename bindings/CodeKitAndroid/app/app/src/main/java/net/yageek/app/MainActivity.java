@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import net.yageek.codekit.CodeKit;
 import net.yageek.codekit.CodeOptions;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -18,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.imageView = (ImageView) findViewById(R.id.imageView);
-        String test = CodeKit.makeCode93("TEST93");
 
-        CodeOptions options = new CodeOptions(200, 7, 0, 5);
-        Bitmap bitmap = CodeKit.convertBitmap(test, options);
+        try {
+            String test = CodeKit.makeCode93("TEST93");
+            CodeOptions options = new CodeOptions(200, 7, 0, 5);
+            Bitmap bitmap = CodeKit.convertBitmap(test, options);
 
-        this.imageView.setImageBitmap(bitmap);
+            this.imageView.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

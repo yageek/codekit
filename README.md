@@ -136,53 +136,15 @@ and one function to create a bitmap from those strings.
 The available methods are the following:
 
 ```java
-/**
-* Generate an EAN8 code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
-public native static String makeEAN8(String code);
-
-/**
-* Generate an EAN13 code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
-public native static String makeEAN13(String code);
-
-/**
-* Generate an Codabar code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
-public native static String makeCodabar(String code);
-
-/**
-* Generate an Code39 code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
-public native static String makeCode39(String code);
-
-/**
-* Generate an Code93 code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
+// Methods to generate a string of bars
+public native static String makeEAN8(String code) throws IOException;
+public native static String makeEAN13(String code) throws IOException;
+public native static String makeCodabar(String code) throws IOException;
+public native static String makeCode39(String code) throws IOException;
 public native static String makeCode93(String code);
+public native static String makeI2Of5(String code) throws IOException;
 
-/**
-* Generate an Interleave 2 of 5 code
-* @param code A string representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
-public native static String makeI2Of5(String code);
-
-/**
-* Generate a bitmap image from a CodeDescriptor
-* @param descriptor The descriptor representing the code
-* @return A string representing the bars (1 for black and 0 for white)
-*/
+// Method to generate a bitmap from a string of bar
 public static Bitmap convertBitmap(String descriptor, CodeOptions options)
 ```
 
@@ -192,10 +154,16 @@ A basic usage could be done as the following:
 import net.yageek.codekit.CodeKit;
 import net.yageek.codekit.CodeOptions;
 
-// Creating the string of bars from the code
-String test = CodeKit.makeCode93("TEST93");
+try {
+    // Creating the string of bars from the code
+    String test = CodeKit.makeCode93("TEST93");
 
-// Creating a code with a height of 200, a quiet space of 7, no border and a bar width of 5
-CodeOptions options = new CodeOptions(200, 7, 0, 5);
-Bitmap bitmap = CodeKit.convertBitmap(test, options);
+    // Creating a code with a height of 200, a quiet space of 7, no border and a bar width of 5
+    CodeOptions options = new CodeOptions(200, 7, 0, 5);
+    Bitmap bitmap = CodeKit.convertBitmap(test, options);
+
+    this.imageView.setImageBitmap(bitmap);
+} catch (IOException e) {
+    e.printStackTrace();
+}
 ```
