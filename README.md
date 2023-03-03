@@ -20,6 +20,14 @@ The supported platform:
 
 A xcframework and docc module are provided. See the releases page to download them.
 
+## Install
+
+Download the release asset from the release page or use SPM to add that dependencies to your SPM project:
+
+```swift
+.package(url: "https://github.com/yageek/codekit.git", from: "1.0.0")
+```
+
 ### Register the filters
 
 The first step is to register the filters into the system. On iOS, best ways would probably be
