@@ -138,11 +138,7 @@ where
     let code = B::make_descriptor(&input)?;
     trace!("Descriptor converted");
 
-    let bars: Vec<_> = code
-        .get_bars()
-        .into_iter()
-        .map(|value| value as i8)
-        .collect();
+    let bars: Vec<_> = code.chars().map(|value| value as i8).collect();
 
     trace!("Creating buffer converted");
     let buffer = env.new_byte_array(bars.len() as i32)?;

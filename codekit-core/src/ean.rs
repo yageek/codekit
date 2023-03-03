@@ -1,20 +1,20 @@
 use std::{error::Error, fmt::Display, marker::PhantomData};
 
-use crate::commons::{map_bits_to_vec, Barcode, Code};
+use crate::commons::Barcode;
 
 //  See [IAN/EAN wikipedia page](https://en.wikipedia.org/wiki/International_Article_Number)
-const EAN_PATTERNS: [[u8; 3]; 10] = [
+const EAN_PATTERNS: [[&str; 3]; 10] = [
     // [L-code,   G-Code,  Right-code
-    [0b0001101, 0b0100111, 0b1110010], //  0
-    [0b0011001, 0b0110011, 0b1100110], //  1
-    [0b0010011, 0b0011011, 0b1101100], //  2
-    [0b0111101, 0b0100001, 0b1000010], //  3
-    [0b0100011, 0b0011101, 0b1011100], //  4
-    [0b0110001, 0b0111001, 0b1001110], //  5
-    [0b0101111, 0b0000101, 0b1010000], //  6
-    [0b0111011, 0b0010001, 0b1000100], //  7
-    [0b0110111, 0b0001001, 0b1001000], //  8
-    [0b0001011, 0b0010111, 0b1110100], //  9
+    ["0001101", "0100111", "1110010"], //  0
+    ["0011001", "0110011", "1100110"], //  1
+    ["0010011", "0011011", "1101100"], //  2
+    ["0111101", "0100001", "1000010"], //  3
+    ["0100011", "0011101", "1011100"], //  4
+    ["0110001", "0111001", "1001110"], //  5
+    ["0101111", "0000101", "1010000"], //  6
+    ["0111011", "0010001", "1000100"], //  7
+    ["0110111", "0001001", "1001000"], //  8
+    ["0001011", "0010111", "1110100"], //  9
 ];
 
 /// *NOTE*: Both index for L-Code in `eanPatterns` and values equal to 0. Same applies for G-code.
@@ -85,7 +85,6 @@ impl Display for EANParseError {
 
 impl Error for EANParseError {}
 impl<'a> EANCode<'a> {
-    /// Parse one string for EAN values and return a vector of string
     fn parse_digit(code_str: &str) -> Result<Vec<u8>, EANParseError> {
         code_str
             .chars()
@@ -161,14 +160,14 @@ impl<'a> EANCode<'a> {
         }
     }
 
-    fn to_code(self) -> Result<Code, EANParseError> {
-        let mut bars: Vec<u8> = vec![1, 0, 1];
+    fn to_code(self) -> Result<String, EANParseError> {
+        let mut bars: String = String::from("101");
 
-        let mut left_elements: Vec<_> = self
+        let left_elements: Vec<&str> = self
             .left
             .iter()
             .enumerate()
-            .flat_map(|(index, left_value)| {
+            .map(|(index, left_value)| {
                 let number_index = *left_value as usize;
                 let pattern_index =
                     if (self.left_pattern as i8) & (1 << (self.left.len() - index - 1)) == 0 {
@@ -177,32 +176,30 @@ impl<'a> EANCode<'a> {
                         EANPatternCode::G
                     };
 
-                let bar_value = EAN_PATTERNS[number_index][pattern_index.index_in_table()];
-                map_bits_to_vec(bar_value, 7)
+                EAN_PATTERNS[number_index][pattern_index.index_in_table()]
             })
             .collect();
 
-        bars.append(&mut left_elements);
+        bars.extend(left_elements);
 
         // Middle guard
-        bars.append(&mut vec![0, 1, 0, 1, 0]);
+        bars += "01010";
 
         // Now right
-        let mut right_elements = self
+        let right_elements: Vec<&str> = self
             .right
             .iter()
-            .flat_map(|value| {
+            .map(|value| {
                 let number_index = *value as usize;
-                let bar_value = EAN_PATTERNS[number_index][EANPatternCode::R.index_in_table()];
-                map_bits_to_vec(bar_value, 7)
+                EAN_PATTERNS[number_index][EANPatternCode::R.index_in_table()]
             })
             .collect();
 
-        bars.append(&mut right_elements);
+        bars.extend(right_elements);
 
         // End guards
-        bars.append(&mut vec![1, 0, 1]);
-        Ok(Code::new(bars))
+        bars += "101";
+        Ok(bars)
     }
 }
 
@@ -213,7 +210,7 @@ pub struct EAN8<'a> {
 impl<'a> Barcode for EAN8<'a> {
     type Error = EANParseError;
 
-    fn make_descriptor(input: &str) -> Result<Code, EANParseError> {
+    fn make_descriptor(input: &str) -> Result<String, EANParseError> {
         let digits = EANCode::parse_digit(input)?;
         let desc = EANCode::new_ean8(&digits)?;
         desc.to_code()
@@ -227,7 +224,7 @@ pub struct EAN13<'a> {
 impl<'a> Barcode for EAN13<'a> {
     type Error = EANParseError;
 
-    fn make_descriptor(input: &str) -> Result<Code, EANParseError> {
+    fn make_descriptor(input: &str) -> Result<String, EANParseError> {
         let digits = EANCode::parse_digit(input)?;
         let desc = EANCode::new_ean13(&digits)?;
         desc.to_code()
@@ -282,13 +279,8 @@ mod tests {
     #[test]
     fn test_descriptor() {
         let code = EAN13::make_descriptor("5901234123457").unwrap();
-        let expected: Vec<u8> = vec![
-            1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0,
-            1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1,
-            1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0,
-            0, 0, 1, 0, 0, 1, 0, 1,
-        ];
+        let expected = "10100010110100111011001100100110111101001110101010110011011011001000010101110010011101000100101";
 
-        assert_eq!(&code.bars(), &expected);
+        assert_eq!(&code, &expected);
     }
 }

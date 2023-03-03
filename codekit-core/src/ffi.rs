@@ -1,4 +1,7 @@
-use std::{ffi::CStr, os::raw::c_char};
+use std::{
+    ffi::{CStr, CString},
+    os::raw::c_char,
+};
 
 use crate::{
     codabar::Codabar,
@@ -15,7 +18,7 @@ use crate::{
 pub struct CodeDescriptor {
     /// A pointer in memory to an array
     /// of byte where each one represent either a blank (0) or black (1) bar
-    pub bars: *mut u8,
+    pub bars: *mut c_char,
     /// The total number of bars stored in memory
     pub bars_count: usize,
 }
@@ -102,14 +105,12 @@ where
     match T::make_descriptor(input) {
         Ok(code) => {
             unsafe {
-                (*value).bars_count = code.bars().len();
+                (*value).bars_count = code.len();
 
                 // Now we need to move the elements to the heap
-                let mut vec = code.get_bars();
-                // We shrink the data to have length == capacity
-                vec.shrink_to_fit();
-                (*value).bars = vec.as_mut_ptr();
-                std::mem::forget(vec);
+
+                let code_value = CString::new(code).unwrap();
+                (*value).bars = code_value.into_raw();
             }
             0
         }

@@ -10,7 +10,6 @@ mod i2of5;
 pub use codabar::{Codabar, CodabarError};
 pub use code39::{Code39, Code39Error};
 pub use code93::{Code93, Code93Error};
-pub use commons::Code;
 pub use ean::{EANParseError, EAN13, EAN8};
 pub use i2of5::{I2of5, I2of5Error};
 

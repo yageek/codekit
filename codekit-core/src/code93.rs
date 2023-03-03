@@ -2,59 +2,56 @@ use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData}
 
 use lazy_static::lazy_static;
 
-use crate::{
-    commons::{map_bits_to_vec_u16, Barcode},
-    Code,
-};
+use crate::commons::Barcode;
 
 lazy_static! {
     /// See: https://web.archive.org/web/20090225114452/http://www.barcodeisland.com/code93.phtml
-    static ref CHARACTERS_MAP: HashMap<char, u16> = {
+    static ref CHARACTERS_MAP: HashMap<char, &'static str> = {
         let mut m = HashMap::new();
-        m.insert('0', 0b100010100);
-        m.insert('1', 0b101001000);
-        m.insert('2', 0b101000100);
-        m.insert('3', 0b101000010);
-        m.insert('4', 0b100101000);
-        m.insert('5', 0b100100100);
-        m.insert('6', 0b100100010);
-        m.insert('7', 0b101010000);
-        m.insert('8', 0b100010010);
-        m.insert('9', 0b100001010);
-        m.insert('A', 0b110101000);
-        m.insert('B', 0b110100100);
-        m.insert('C', 0b110100010);
-        m.insert('D', 0b110010100);
-        m.insert('E', 0b110010010);
-        m.insert('F', 0b110001010);
-        m.insert('G', 0b101101000);
-        m.insert('H', 0b101100100);
-        m.insert('I', 0b101100010);
-        m.insert('J', 0b100110100);
-        m.insert('K', 0b100011010);
-        m.insert('L', 0b101011000);
-        m.insert('M', 0b101001100);
-        m.insert('N', 0b101000110);
-        m.insert('O', 0b100101100);
-        m.insert('P', 0b100010110);
-        m.insert('Q', 0b110110100);
-        m.insert('R', 0b110110010);
-        m.insert('S', 0b110101100);
-        m.insert('T', 0b110100110);
-        m.insert('U', 0b110010110);
-        m.insert('V', 0b110011010);
-        m.insert('W', 0b101101100);
-        m.insert('X', 0b101100110);
-        m.insert('Y', 0b100110110);
-        m.insert('Z', 0b100111010);
-        m.insert('-', 0b100101110);
-        m.insert('.', 0b111010100);
-        m.insert(' ', 0b111010010);
-        m.insert('$', 0b111001010);
-        m.insert('/', 0b101101110);
-        m.insert('+', 0b101110110);
-        m.insert('%', 0b110101110);
-        m.insert('*', 0b101011110);
+        m.insert('0', "100010100");
+        m.insert('1', "101001000");
+        m.insert('2', "101000100");
+        m.insert('3', "101000010");
+        m.insert('4', "100101000");
+        m.insert('5', "100100100");
+        m.insert('6', "100100010");
+        m.insert('7', "101010000");
+        m.insert('8', "100010010");
+        m.insert('9', "100001010");
+        m.insert('A', "110101000");
+        m.insert('B', "110100100");
+        m.insert('C', "110100010");
+        m.insert('D', "110010100");
+        m.insert('E', "110010010");
+        m.insert('F', "110001010");
+        m.insert('G', "101101000");
+        m.insert('H', "101100100");
+        m.insert('I', "101100010");
+        m.insert('J', "100110100");
+        m.insert('K', "100011010");
+        m.insert('L', "101011000");
+        m.insert('M', "101001100");
+        m.insert('N', "101000110");
+        m.insert('O', "100101100");
+        m.insert('P', "100010110");
+        m.insert('Q', "110110100");
+        m.insert('R', "110110010");
+        m.insert('S', "110101100");
+        m.insert('T', "110100110");
+        m.insert('U', "110010110");
+        m.insert('V', "110011010");
+        m.insert('W', "101101100");
+        m.insert('X', "101100110");
+        m.insert('Y', "100110110");
+        m.insert('Z', "100111010");
+        m.insert('-', "100101110");
+        m.insert('.', "111010100");
+        m.insert(' ', "111010010");
+        m.insert('$', "111001010");
+        m.insert('/', "101101110");
+        m.insert('+', "101110110");
+        m.insert('%', "110101110");
+        m.insert('*', "101011110");
         m
     };
 }
@@ -102,7 +99,7 @@ impl<'a> Code93<'a> {
         Code93::compute_checksum(message, 15)
     }
 
-    fn parse_message(message: &'a str) -> Result<Vec<u16>, Code93Error> {
+    fn parse_message(message: &str) -> Result<Vec<&'static str>, Code93Error> {
         let mut message = message.to_uppercase();
 
         if message
@@ -131,16 +128,13 @@ impl<'a> Code93<'a> {
 impl<'a> Barcode for Code93<'a> {
     type Error = Code93Error;
 
-    fn make_descriptor(input: &str) -> Result<crate::Code, Self::Error> {
+    fn make_descriptor(input: &str) -> Result<String, Self::Error> {
         let patterns = Code93::parse_message(input)?;
 
-        let mut bars: Vec<_> = patterns
-            .into_iter()
-            .flat_map(|pattern| map_bits_to_vec_u16(pattern, 9))
-            .collect();
+        let mut bars: String = patterns.into_iter().to_owned().collect();
 
-        bars.push(1);
-        Ok(Code::new(bars))
+        bars.push('1');
+        Ok(bars)
     }
 }
 

@@ -2,7 +2,7 @@ use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData}
 
 use lazy_static::lazy_static;
 
-use crate::{commons::Barcode, Code};
+use crate::commons::Barcode;
 
 lazy_static! {
     static ref CHARACTERS_MAP: HashMap<char, u8> = {
@@ -55,7 +55,7 @@ impl<'a> I2of5<'a> {
         }
     }
 
-    fn interleaved_converted_patterns(pattern: Vec<u8>) -> Result<Vec<u8>, I2of5Error> {
+    fn interleaved_converted_patterns(pattern: Vec<u8>) -> Result<String, I2of5Error> {
         if pattern.len() % 2 != 0 {
             return Err(I2of5Error::InvalidMessage);
         }
@@ -75,11 +75,11 @@ impl<'a> I2of5<'a> {
             }
         }
 
-        let converted_patterns: Vec<_> = interleaved_pattern
+        let converted_patterns: String = interleaved_pattern
             .into_iter()
             .enumerate()
             .flat_map(|(offset, narrow_wide)| {
-                let value = if offset % 2 == 0 { 1u8 } else { 0u8 };
+                let value = if offset % 2 == 0 { '1' } else { '0' };
 
                 if narrow_wide != 0 {
                     return vec![value, value];
@@ -95,16 +95,16 @@ impl<'a> I2of5<'a> {
 impl<'a> Barcode for I2of5<'a> {
     type Error = I2of5Error;
 
-    fn make_descriptor(input: &str) -> Result<crate::Code, Self::Error> {
+    fn make_descriptor(input: &str) -> Result<String, Self::Error> {
         let patterns = I2of5::parse_message(input)?;
 
-        let mut converted = I2of5::interleaved_converted_patterns(patterns)?;
+        let converted = I2of5::interleaved_converted_patterns(patterns)?;
 
-        let mut bars = vec![1, 0, 1, 0];
-        bars.append(&mut converted);
-        bars.append(&mut vec![1, 1, 0, 1]);
+        let mut bars = String::from("1010");
+        bars.push_str(&converted);
+        bars.push_str("1101");
 
-        Ok(Code::new(bars))
+        Ok(bars)
     }
 }
 
@@ -115,7 +115,7 @@ mod tests {
     #[test]
     fn test_patterns() {
         let inputs: Vec<u8> = vec![0b10001, 0b01001]; // "12"
-        let expected: Vec<u8> = vec![1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0];
+        let expected = "11010010101100";
         let computed = I2of5::interleaved_converted_patterns(inputs).expect("valid conversion");
 
         assert_eq!(expected, computed);
@@ -134,12 +134,11 @@ mod tests {
             0b00110, // 0
         ];
 
-        let expected: Vec<u8> = vec![
-            1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, // "12"
-            1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, // "34"
-            1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, // "56"
-            1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, // "70"
-        ];
+        let expected = String::new()
+        + "11010010101100" // "12"
+        + "11011010010100" // "34"
+        + "11010011001010" // "56"
+        + "10101001100110"; // "70"
 
         let computed = I2of5::interleaved_converted_patterns(inputs).expect("valid conversion");
 
