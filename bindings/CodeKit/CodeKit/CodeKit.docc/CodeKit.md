@@ -1,6 +1,6 @@
 # ``CodeKit``
 
-CodeKit is a set of `CoreImage` filters that allows you to generate 2D barcodes.
+CodeKit is a set of `CoreImage` filters that allows you to generate 1D barcodes.
 
 The logic to generate the different bars (black/white verticals elements) is using some internal 
 Rust code over FFI.
