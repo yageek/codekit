@@ -12,6 +12,7 @@ default = ["ffi-interface"]
 ffi-interface = []
 
 [dependencies]
+lazy_static = "1.4.0"
 libc = { version = "0.2", optional = true }
 
 [build-dependencies]

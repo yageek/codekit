@@ -79,7 +79,6 @@
 		
 		buff = value == 1 ? 0x0: 0xffffffff;
 		CFDataAppendBytes(codeLine, (UInt8*)&buff, 4);
-		
 	}
 
 	// We add the right spacing

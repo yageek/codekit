@@ -235,7 +235,7 @@ impl<'a> Barcode for EAN13<'a> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{ean::EANPatternCode, Barcode, CodeOptions};
+    use crate::{commons::Barcode, ean::EANPatternCode, CodeOptions};
 
     use super::{EANCode, EAN13};
 
@@ -281,7 +281,6 @@ mod tests {
     #[test]
     fn test_descriptor() {
         let code = EAN13::make_descriptor("5901234123457", CodeOptions::default()).unwrap();
-
         let expected: Vec<u8> = vec![
             1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0,
             1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1,
@@ -289,6 +288,6 @@ mod tests {
             0, 0, 1, 0, 0, 1, 0, 1,
         ];
 
-        assert_eq!(&code.bars, &expected);
+        assert_eq!(&code.bars(), &expected);
     }
 }

@@ -1,6 +1,6 @@
+mod code39;
 mod commons;
 mod ean;
-
 pub use commons::{Code, CodeOptions};
 
 #[cfg(feature = "ffi-interface")]
@@ -9,6 +9,7 @@ pub mod ffi {
     use std::{ffi::CStr, os::raw::c_char};
 
     use crate::{
+        code39::Code39,
         commons::Barcode,
         ean::{EAN13, EAN8},
         CodeOptions,
@@ -21,7 +22,8 @@ pub mod ffi {
         pub bars_count: usize,
     }
 
-    /// Free a code descriptor
+    /// Free a code descriptor from a pointer
+    /// to CodeDecriptor
     #[no_mangle]
     pub extern "C" fn codekit_free_descriptor(ptr: *mut CodeDescriptor) {
         assert!(!ptr.is_null());
@@ -36,7 +38,7 @@ pub mod ffi {
 
     /// Create a descriptor for EAN8 code
     #[no_mangle]
-    pub extern "C" fn codekit_code_create_EAN8(
+    pub extern "C" fn codekit_code_create_ean8(
         content: *const c_char,
         options: CodeOptions,
         value: *mut CodeDescriptor,
@@ -46,7 +48,7 @@ pub mod ffi {
 
     /// Create a descriptor for EAN8 code
     #[no_mangle]
-    pub extern "C" fn codekit_code_create_EAN13(
+    pub extern "C" fn codekit_code_create_ean13(
         content: *const c_char,
         options: CodeOptions,
         value: *mut CodeDescriptor,
@@ -54,6 +56,17 @@ pub mod ffi {
         create_code_from_str::<EAN13>(content, options, value)
     }
 
+    /// Create a descriptor for a Code39 code.
+    #[no_mangle]
+    pub extern "C" fn codekit_code_create_code39(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        create_code_from_str::<Code39>(content, options, value)
+    }
+
+    /// Internal generic method
     fn create_code_from_str<'a, T>(
         content: *const c_char,
         options: CodeOptions,
@@ -82,7 +95,7 @@ pub mod ffi {
                 }
                 0
             }
-            Err(e) => -1,
+            Err(_e) => -1,
         }
     }
 }

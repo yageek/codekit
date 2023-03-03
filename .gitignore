@@ -1,3 +1,6 @@
 codekit-core/target/
 bindings/CodeKit/.DS_Store
 codekit-core/target
+bindings/libcodekit_core/.DS_Store
+.DS_Store
+bindings/libcodekit_core/lib

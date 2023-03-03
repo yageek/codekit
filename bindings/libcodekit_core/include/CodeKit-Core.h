@@ -16,20 +16,28 @@ typedef struct CodeKitCodeDescriptor {
 } CodeKitCodeDescriptor;
 
 /**
- * Free a code descriptor
+ * Free a code descriptor from a pointer
+ * to CodeDecriptor
  */
 void codekit_free_descriptor(struct CodeKitCodeDescriptor *ptr);
 
 /**
  * Create a descriptor for EAN8 code
  */
-int8_t codekit_code_create_EAN8(const char *content,
+int8_t codekit_code_create_ean8(const char *content,
                                 struct CodeKitCodeOptions options,
                                 struct CodeKitCodeDescriptor *value);
 
 /**
  * Create a descriptor for EAN8 code
  */
-int8_t codekit_code_create_EAN13(const char *content,
+int8_t codekit_code_create_ean13(const char *content,
                                  struct CodeKitCodeOptions options,
                                  struct CodeKitCodeDescriptor *value);
+
+/**
+ * Create a descriptor for a Code39 code.
+ */
+int8_t codekit_code_create_code39(const char *content,
+                                  struct CodeKitCodeOptions options,
+                                  struct CodeKitCodeDescriptor *value);
