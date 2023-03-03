@@ -12,33 +12,9 @@ use jni::objects::{JClass, JObject, JString};
 // can't return one of the objects with lifetime information because the
 // lifetime checker won't let us.
 use jni::sys::{jint, jobject, jstring, JNI_VERSION_1_6};
-use log::{debug, trace};
-
-#[cfg(target_os = "android")]
-use android_logger::Config;
-#[cfg(target_os = "android")]
-use log::Level;
 
 use crate::commons::Barcode;
 use anyhow::Result;
-
-#[cfg(target_os = "android")]
-fn setup_android_logger() {
-    android_logger::init_once(
-        Config::default()
-            .with_min_level(Level::Trace) // limit log level
-            .with_tag("codekit-android"), // logs will show under mytag tag
-    );
-}
-
-#[allow(non_snake_case)]
-#[no_mangle]
-pub extern "system" fn JNI_OnLoad(_vm: JavaVM, _: *mut c_void) -> jint {
-    #[cfg(target_os = "android")]
-    setup_android_logger();
-    debug!("JNI OnLoad !!!");
-    JNI_VERSION_1_6
-}
 
 fn compute_code_string_from_string<B>(
     env: &mut JNIEnv,

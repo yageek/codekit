@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		3405732928DB9708006F4F4C /* RCKEAN13CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */; };
 		3405732A28DB9708006F4F4C /* RCKEAN13CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */; };
-		346B053129AEA10A002A457C /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; };
-		346B053229AEA10A002A457C /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34944C0C29AF4EF300BA3C2F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */; };
+		34944C0D29AF4EF300BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADA028DA03F100244043 /* CodeKit.docc */; };
 		34C3ADA728DA03F100244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
 		34C3ADAC28DA03F100244043 /* CodeKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADAB28DA03F100244043 /* CodeKitTests.m */; };
 		34C3ADAD28DA03F100244043 /* CodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AD9F28DA03F100244043 /* CodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34C3ADC028DA116300244043 /* RCKCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */; };
+		34C3ADC028DA116300244043 /* RCKCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34C3ADC128DA116300244043 /* RCKCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */; };
 		34C3ADDF28DA1DB300244043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADDE28DA1DB300244043 /* AppDelegate.m */; };
 		34C3ADE228DA1DB300244043 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADE128DA1DB300244043 /* SceneDelegate.m */; };
@@ -50,13 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		346B053329AEA10A002A457C /* Embed Frameworks */ = {
+		34944C0E29AF4EF300BA3C2F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				346B053229AEA10A002A457C /* CodeKitCore.xcframework in Embed Frameworks */,
+				34944C0D29AF4EF300BA3C2F /* CodeKitCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +67,7 @@
 		3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKEAN13CodeGenerator.h; sourceTree = "<group>"; };
 		3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKEAN13CodeGenerator.m; sourceTree = "<group>"; };
 		34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CodeKitCore.xcframework; path = ../libcodekit_core/lib/iOS/debug/AppleSilicon/CodeKitCore.xcframework; sourceTree = "<group>"; };
+		34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CodeKitCore.xcframework; path = ../libcodekit_core/lib/iOS/release/AppleSilicon/CodeKitCore.xcframework; sourceTree = "<group>"; };
 		34C3AD9C28DA03F100244043 /* CodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C3AD9F28DA03F100244043 /* CodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeKit.h; sourceTree = "<group>"; };
 		34C3ADA028DA03F100244043 /* CodeKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CodeKit.docc; sourceTree = "<group>"; };
@@ -105,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				346B053129AEA10A002A457C /* CodeKitCore.xcframework in Frameworks */,
+				34944C0C29AF4EF300BA3C2F /* CodeKitCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +136,6 @@
 				34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */,
 				3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */,
 				3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */,
-				34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */,
-				34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */,
 				34D76D1128F83C530045468A /* RCKCode39CodeGenerator.h */,
 				34D76D1228F83C530045468A /* RCKCode39CodeGenerator.m */,
 				34D76D1B28F83E280045468A /* RCKCode93CodeGenerator.h */,
@@ -178,6 +177,8 @@
 				3405732B28DB994D006F4F4C /* Filters */,
 				34C3AE0328DA49AC00244043 /* RCKCodeKit.h */,
 				34C3AE0428DA49AC00244043 /* RCKCodeKit.m */,
+				34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */,
+				34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */,
 			);
 			path = CodeKit;
 			sourceTree = "<group>";
@@ -193,6 +194,7 @@
 		34C3ADD528DA1D6700244043 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34944C0B29AF4EF300BA3C2F /* CodeKitCore.xcframework */,
 				34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */,
 			);
 			name = Frameworks;
@@ -246,7 +248,7 @@
 				34C3AD9828DA03F100244043 /* Sources */,
 				34C3AD9928DA03F100244043 /* Frameworks */,
 				34C3AD9A28DA03F100244043 /* Resources */,
-				346B053329AEA10A002A457C /* Embed Frameworks */,
+				34944C0E29AF4EF300BA3C2F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -545,6 +547,8 @@
 		34C3ADB128DA03F100244043 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -562,7 +566,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.yageek.CodeKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -571,6 +575,8 @@
 		34C3ADB228DA03F100244043 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -588,7 +594,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.yageek.CodeKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

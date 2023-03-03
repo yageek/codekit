@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCKCodabarCodeGenerator : RCKCodeGenerator
+@interface RCKCodabarCodeGenerator : RCKCodeGenerator <RCKCodeGenerator>
 @property(nonatomic, copy) NSString *codeValue;
 @end
 
