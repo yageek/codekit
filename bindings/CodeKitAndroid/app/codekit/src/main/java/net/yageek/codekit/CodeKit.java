@@ -2,8 +2,7 @@ package net.yageek.codekit;
 
 import android.graphics.Bitmap;
 
-import java.io.BufferedWriter;
-import java.nio.ByteBuffer;
+
 import java.nio.IntBuffer;
 import java.util.Arrays;
 
@@ -16,10 +15,15 @@ public class CodeKit {
         System.loadLibrary("codekit_core");
     }
 
-    private static final int WHITE_COLOR = 0xffff0000;
+    private static final int WHITE_COLOR = 0xffffffff;
     private static final int BLACK_COLOR = 0xff000000;
 
     public native static CodeDescriptor makeEAN8(String code, CodeOptions options);
+    public native static CodeDescriptor makeEAN13(String code, CodeOptions options);
+    public native static CodeDescriptor makeCodabar(String code, CodeOptions options);
+    public native static CodeDescriptor makeCode39(String code, CodeOptions options);
+    public native static CodeDescriptor makeCode93(String code, CodeOptions options);
+    public native static CodeDescriptor makeI2Of5(String code, CodeOptions options);
 
     public static Bitmap convertBitmap(CodeDescriptor descriptor) {
 
