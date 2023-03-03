@@ -1,4 +1,5 @@
 mod code39;
+mod code93;
 mod commons;
 mod ean;
 pub use commons::{Code, CodeOptions};
@@ -10,6 +11,7 @@ pub mod ffi {
 
     use crate::{
         code39::Code39,
+        code93::Code93,
         commons::Barcode,
         ean::{EAN13, EAN8},
         CodeOptions,
@@ -64,6 +66,16 @@ pub mod ffi {
         value: *mut CodeDescriptor,
     ) -> i8 {
         create_code_from_str::<Code39>(content, options, value)
+    }
+
+    /// Create a descriptor for a Code93 code.
+    #[no_mangle]
+    pub extern "C" fn codekit_code_create_code93(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        create_code_from_str::<Code93>(content, options, value)
     }
 
     /// Internal generic method

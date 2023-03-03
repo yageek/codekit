@@ -68,11 +68,11 @@ pub struct Code39<'a> {
 impl<'a> Code39<'a> {
     fn parse_message(message: &'a str) -> Result<Vec<u16>, Code39Error> {
         let mut message = message.to_uppercase();
-        if !&message.starts_with("*") {
+        if !&message.starts_with('*') {
             message.insert(0, '*');
         }
 
-        if !&message.ends_with("*") {
+        if !&message.ends_with('*') {
             message.push('*');
         }
 

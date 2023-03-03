@@ -235,7 +235,7 @@ impl<'a> Barcode for EAN13<'a> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{commons::Barcode, ean::EANPatternCode, CodeOptions};
+    use crate::{commons::Barcode, CodeOptions};
 
     use super::{EANCode, EAN13};
 

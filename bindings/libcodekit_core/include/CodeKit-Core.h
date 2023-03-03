@@ -41,3 +41,10 @@ int8_t codekit_code_create_ean13(const char *content,
 int8_t codekit_code_create_code39(const char *content,
                                   struct CodeKitCodeOptions options,
                                   struct CodeKitCodeDescriptor *value);
+
+/**
+ * Create a descriptor for a Code93 code.
+ */
+int8_t codekit_code_create_code93(const char *content,
+                                  struct CodeKitCodeOptions options,
+                                  struct CodeKitCodeDescriptor *value);
