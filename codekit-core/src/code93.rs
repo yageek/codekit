@@ -1,4 +1,4 @@
-use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display};
 
 use lazy_static::lazy_static;
 
@@ -74,11 +74,9 @@ impl Display for Code93Error {
 }
 impl Error for Code93Error {}
 
-pub struct Code93<'a> {
-    _data: &'a PhantomData<u8>,
-}
+pub struct Code93;
 
-impl<'a> Code93<'a> {
+impl Code93 {
     fn compute_checksum(message: &str, weight_module: usize) -> char {
         let mut sum = 0;
 
@@ -125,7 +123,7 @@ impl<'a> Code93<'a> {
     }
 }
 
-impl<'a> Barcode for Code93<'a> {
+impl Barcode for Code93 {
     type Error = Code93Error;
 
     fn make_descriptor(input: &str) -> Result<String, Self::Error> {

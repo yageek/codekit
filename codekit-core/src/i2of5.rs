@@ -1,4 +1,4 @@
-use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display};
 
 use lazy_static::lazy_static;
 
@@ -36,12 +36,10 @@ impl Display for I2of5Error {
 }
 impl Error for I2of5Error {}
 
-pub struct I2of5<'a> {
-    _data: &'a PhantomData<u8>,
-}
+pub struct I2of5;
 
-impl<'a> I2of5<'a> {
-    fn parse_message(message: &'a str) -> Result<Vec<u8>, I2of5Error> {
+impl I2of5 {
+    fn parse_message(message: &str) -> Result<Vec<u8>, I2of5Error> {
         if message.contains(|c| !CHARACTERS_MAP.contains_key(&c)) && message.len() != 14 {
             Err(I2of5Error::InvalidMessage)
         } else {
@@ -92,7 +90,8 @@ impl<'a> I2of5<'a> {
         Ok(converted_patterns)
     }
 }
-impl<'a> Barcode for I2of5<'a> {
+
+impl Barcode for I2of5 {
     type Error = I2of5Error;
 
     fn make_descriptor(input: &str) -> Result<String, Self::Error> {

@@ -1,5 +1,5 @@
 use lazy_static::lazy_static;
-use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display};
 
 use crate::commons::Barcode;
 lazy_static! {
@@ -67,12 +67,10 @@ impl Display for Code39Error {
 }
 impl Error for Code39Error {}
 
-pub struct Code39<'a> {
-    _data: &'a PhantomData<u8>,
-}
+pub struct Code39;
 
-impl<'a> Code39<'a> {
-    fn parse_message(message: &'a str) -> Result<Vec<&str>, Code39Error> {
+impl Code39 {
+    fn parse_message(message: &str) -> Result<Vec<&str>, Code39Error> {
         let mut message = message.to_uppercase();
         if !&message.starts_with('*') {
             message.insert(0, '*');
@@ -94,7 +92,7 @@ impl<'a> Code39<'a> {
             .collect()
     }
 }
-impl<'a> Barcode for Code39<'a> {
+impl Barcode for Code39 {
     type Error = Code39Error;
     fn make_descriptor(input: &str) -> Result<String, Code39Error> {
         let bars = Code39::parse_message(input)?;

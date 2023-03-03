@@ -1,4 +1,4 @@
-use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display};
 
 use lazy_static::lazy_static;
 
@@ -46,11 +46,9 @@ impl Display for CodabarError {
 }
 impl Error for CodabarError {}
 
-pub struct Codabar<'a> {
-    _data: &'a PhantomData<u8>,
-}
+pub struct Codabar;
 
-impl<'a> Codabar<'a> {
+impl Codabar {
     fn parse_message(message: &str) -> Result<Vec<&str>, CodabarError> {
         if message.contains(|c| !CHARACTERS_MAP.contains_key(&c)) {
             Err(CodabarError::InvalidMessage)
@@ -65,7 +63,7 @@ impl<'a> Codabar<'a> {
         }
     }
 }
-impl<'a> Barcode for Codabar<'a> {
+impl Barcode for Codabar {
     type Error = CodabarError;
 
     fn make_descriptor(input: &str) -> Result<String, Self::Error> {
