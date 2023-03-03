@@ -1,6 +1,4 @@
-use std::ffi::c_void;
-
-use jni::{JNIEnv, JavaVM};
+use jni::JNIEnv;
 
 // These objects are what you should use as arguments to your native
 // function. They carry extra lifetime information to prevent them escaping
@@ -11,7 +9,7 @@ use jni::objects::{JClass, JObject, JString};
 // This is just a pointer. We'll be returning it from our function. We
 // can't return one of the objects with lifetime information because the
 // lifetime checker won't let us.
-use jni::sys::{jint, jobject, jstring, JNI_VERSION_1_6};
+use jni::sys::{jobject, jstring};
 
 use crate::commons::Barcode;
 use anyhow::Result;
@@ -25,7 +23,6 @@ where
     B: Barcode,
     <B as Barcode>::Error: Sync + Send + 'static,
 {
-    trace!("Descriptor creation");
     let input: String = env.get_string(&code)?.into();
 
     let code = B::make_descriptor(&input)?;

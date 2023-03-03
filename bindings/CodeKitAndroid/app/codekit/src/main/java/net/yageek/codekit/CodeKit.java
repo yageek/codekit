@@ -21,65 +21,59 @@ public class CodeKit {
     /**
      * Generate an EAN8 code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeEAN8(String code, CodeOptions options);
+    public native static String makeEAN8(String code);
 
     /**
      * Generate an EAN13 code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeEAN13(String code, CodeOptions options);
+    public native static String makeEAN13(String code);
 
     /**
      * Generate an Codabar code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeCodabar(String code, CodeOptions options);
+    public native static String makeCodabar(String code);
 
     /**
      * Generate an Code39 code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeCode39(String code, CodeOptions options);
+    public native static String makeCode39(String code);
 
     /**
      * Generate an Code93 code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeCode93(String code, CodeOptions options);
+    public native static String makeCode93(String code);
 
     /**
      * Generate an Interleave 2 of 5 code
      * @param code A string representing the code
-     * @param options The options to generate the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public native static CodeDescriptor makeI2Of5(String code, CodeOptions options);
+    public native static String makeI2Of5(String code);
 
     /**
      * Generate a bitmap image from a CodeDescriptor
      * @param descriptor The descriptor representing the code
-     * @return
+     * @return A string representing the bars (1 for black and 0 for white)
      */
-    public static Bitmap convertBitmap(CodeDescriptor descriptor) {
+    public static Bitmap convertBitmap(String descriptor, CodeOptions options) {
 
-        final int totalBar = descriptor.bars.length;
-        final int barcodeHeight = descriptor.options.getCodeHeight();
-        final int borderWidth = descriptor.options.getBorderWidth();
-        final int quietSpace = descriptor.options.getQuietSpace();
+        final int totalBar = descriptor.length();
+        final int barcodeHeight = options.getCodeHeight();
+        final int borderWidth = options.getBorderWidth();
+        final int quietSpace = options.getQuietSpace();
 
         final int totalHeight = barcodeHeight + 2*quietSpace + 2*borderWidth;
-        final int totalWidth = totalBar + 2*quietSpace + 2*borderWidth;
+        final int totalWidth = totalBar*options.getBarWidth() + 2*quietSpace + 2*borderWidth;
 
         final int[] emptyLine = new int[totalWidth];
         Arrays.fill(emptyLine, WHITE_COLOR);
@@ -107,14 +101,20 @@ public class CodeKit {
         // We add the left spacing
         codeLine.put(emptyLine, 0, quietSpace); // WARNING
 
+        int blackColor [] = new int [options.getBarWidth()];
+        Arrays.fill(blackColor, BLACK_COLOR);
+
+        int whiteColor [] = new int [options.getBarWidth()];
+        Arrays.fill(whiteColor, WHITE_COLOR);
+
         // We add the bar element
         for (int i = 0; i < totalBar; i++){
-            byte value = descriptor.bars[i];
+            char value = descriptor.charAt(i);
 
-            if (value == 1) {
-                codeLine.put(BLACK_COLOR);
+            if (value == '1') {
+                codeLine.put(blackColor);
             } else {
-                codeLine.put(WHITE_COLOR);
+                codeLine.put(whiteColor);
             }
         }
 
