@@ -9,11 +9,16 @@ pub(crate) trait Barcode {
     fn make_descriptor(input: Self::Input, options: CodeOptions) -> Result<Code, Self::Error>;
 }
 
+/// A structure holding
+/// the display information to render a bar
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
 pub struct CodeOptions {
+    /// The quiet space around the bar code
     pub quiet_space: u16,
+    /// The height of the code
     pub code_height: u16,
+    /// The border with of the code
     pub border_width: u16,
 }
 

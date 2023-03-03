@@ -18,13 +18,20 @@ pub mod ffi {
         code93::Code93,
         commons::Barcode,
         ean::{EAN13, EAN8},
+        i2of5::I2of5,
         CodeOptions,
     };
 
+    /// A descriptors holding all the
+    /// informations to draw a code
     #[repr(C)]
     pub struct CodeDescriptor {
+        /// The options used to draw the code
         pub options: CodeOptions,
+        /// A pointer in memory to an array
+        /// of byte where each one represent either a blank (0) or black (1) bar
         pub bars: *mut u8,
+        /// The total number of bars stored in memory
         pub bars_count: usize,
     }
 
@@ -91,6 +98,17 @@ pub mod ffi {
     ) -> i8 {
         create_code_from_str::<Codabar>(content, options, value)
     }
+
+    /// Create a descriptor for a Interleaved code.
+    #[no_mangle]
+    pub extern "C" fn codekit_code_creat_i2of5(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        create_code_from_str::<I2of5>(content, options, value)
+    }
+
     /// Internal generic method
     fn create_code_from_str<'a, T>(
         content: *const c_char,
