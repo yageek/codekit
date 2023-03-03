@@ -14,4 +14,3 @@ FOUNDATION_EXPORT double CodeKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char CodeKitVersionString[];
 
 #import <CodeKit/RCKCodeKit.h>
-#import <CodeKit/RCKCodeGenerator.h>

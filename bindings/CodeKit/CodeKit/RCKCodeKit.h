@@ -7,8 +7,23 @@
 
 #import <CodeKit/CodeKit.h>
 #import <CoreImage/CoreImage.h>
-#import <CodeKit/RCKCodeGenerator.h>
 NS_ASSUME_NONNULL_BEGIN
+
+/// The protocol implemented by all internals elements
+@protocol RCKCodeGenerator <CIFilter>
+
+/// The border width of the code. Default to 0.
+@property(nonatomic, assign) NSInteger borderWidth;
+
+/// The quiet space of the code. Default to 7.
+@property(nonatomic, assign) NSInteger quietSpace;
+
+/// The barcode height. Default to 50.
+@property(nonatomic, assign) NSInteger barCodeHeight;
+
+/// The code value
+@property(nonatomic, copy) NSString *codeValue;
+@end
 
 /// The interface implementing ``CIFilterContructor``
 @interface RCKCodeKit : NSObject <CIFilterConstructor>
