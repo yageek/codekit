@@ -17,7 +17,7 @@ let package = Package(
         .binaryTarget(
             name: "CodeKit",
             url: "https://github.com/yageek/codekit/releases/download/v1.0.0/CodeKit-1.0.0.zip",
-            checksum: "69208562f28b68f966166a1b3127bacde3b28d6e0e138fcd91016f7f12cffa73"
+            checksum: "42199d5cecfc699fc1c36f384558704cdfcf39f030d1b5f37f5550e15cc686cf"
         )
     ]
 )

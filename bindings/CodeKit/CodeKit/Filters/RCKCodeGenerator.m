@@ -109,6 +109,13 @@
     
     CGImageRef image = CGImageCreate(totalWidth, totalHeight, 8, 32, totalBytesPerLine, CGColorSpaceCreateDeviceRGB(), order | kCGImageAlphaNoneSkipLast, provider, NULL, NO, kCGRenderingIntentAbsoluteColorimetric);
     
+    // Free all the used resources
+    free(emptyLine);
+    free(borderLine);
+    CFRelease(codeLine);
+    CFRelease(data);
+    CGDataProviderRelease(provider);
+    
     return image;
 }
 #pragma mark - Attributes
