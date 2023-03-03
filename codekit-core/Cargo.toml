@@ -3,6 +3,16 @@ name = "codekit-core"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+crate-type = ["staticlib", "cdylib", "rlib"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["ffi-interface"]
+ffi-interface = []
 
 [dependencies]
+libc = { version = "0.2", optional = true }
+
+[build-dependencies]
+cbindgen = { version = "0.24.3", optional = true }

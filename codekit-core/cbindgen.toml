@@ -1,0 +1,8 @@
+language = "C"
+namespace = "ffi"
+
+[defines]
+feature = "ffi-interface"
+
+[export]
+prefix = "CodeKit"

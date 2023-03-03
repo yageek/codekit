@@ -1,6 +1,6 @@
 use std::{error::Error, fmt::Display, marker::PhantomData};
 
-use crate::{commons::map_bits_to_vec, Barcode, Code, CodeOptions};
+use crate::commons::{map_bits_to_vec, Barcode, Code, CodeOptions};
 
 //  See [IAN/EAN wikipedia page](https://en.wikipedia.org/wiki/International_Article_Number)
 const EAN_PATTERNS: [[u8; 3]; 10] = [

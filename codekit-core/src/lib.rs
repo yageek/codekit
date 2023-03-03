@@ -1,58 +1,57 @@
 mod commons;
 mod ean;
 
-/// An internal type for encoder
-trait Barcode {
-    type Input;
-    type Error;
+pub use commons::{Code, CodeOptions};
 
-    /// Return the descriptor for the code
-    fn make_descriptor(input: Self::Input, options: CodeOptions) -> Result<Code, Self::Error>;
-}
+#[cfg(feature = "ffi-interface")]
+/// The code contains for the FFI
+pub mod ffi {
+    use std::{ffi::CString, os::raw::c_char};
 
-#[repr(C)]
-#[derive(Debug, Clone, Copy)]
-pub struct CodeOptions {
-    pub quiet_space: f32,
-    pub code_height: f32,
-    pub border_width: f32,
-}
+    use crate::{commons::Barcode, ean::EAN8, CodeOptions};
 
-impl Default for CodeOptions {
-    fn default() -> Self {
-        CodeOptions {
-            quiet_space: 7.0,
-            code_height: 50.0,
-            border_width: 0.0,
+    #[repr(C)]
+    pub struct CodeDescriptor {
+        pub options: CodeOptions,
+        pub bars: *const u8,
+        pub bars_count: usize,
+        inner: *mut Vec<u8>,
+    }
+
+    #[no_mangle]
+    pub extern "C" fn codekit_free_descriptor(ptr: *mut CodeDescriptor) {
+        assert!(!ptr.is_null());
+        unsafe {
+            Box::from_raw((*ptr).inner);
         }
     }
-}
-#[repr(C)]
-/// A generic code descriptor
-/// to draw code bar
-pub struct Code {
-    options: CodeOptions,
-    bars: Vec<u8>,
-}
 
-impl Code {
-    fn new(bars: Vec<u8>, options: CodeOptions) -> Code {
-        Code { options, bars }
-    }
-    /// Retrieve the border witdh of the code
-    pub fn border_width(&self) -> f32 {
-        self.options.border_width
-    }
+    #[no_mangle]
+    pub extern "C" fn codekit_code_create_EAN8(
+        content: *const c_char,
+        options: CodeOptions,
+        value: *mut CodeDescriptor,
+    ) -> i8 {
+        assert!(!content.is_null());
+        // We need to convert a string from C world
+        let input_string = unsafe { CString::from_raw(content as *mut c_char) };
+        let input = input_string.to_str().unwrap();
 
-    pub fn height(&self) -> f32 {
-        self.options.code_height
-    }
+        match EAN8::make_descriptor(input, options) {
+            Ok(code) => {
+                unsafe {
+                    (*value).options = code.options();
+                    (*value).bars_count = code.bars().len();
 
-    pub fn quiet_space(&self) -> f32 {
-        self.options.quiet_space
-    }
+                    // Now we need to move the elements to the heap
+                    let vec = code.get_bars();
+                    (*value).bars = vec.as_ptr();
 
-    pub fn bars(&self) -> &[u8] {
-        &self.bars
+                    Box::into_raw(Box::new(vec));
+                }
+                0
+            }
+            Err(_e) => -1,
+        }
     }
 }
