@@ -1,9 +1,9 @@
-use std::{collections::HashMap, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
 
 use lazy_static::lazy_static;
 
 use crate::{
-    commons::{map_bits_to_vec, map_bits_to_vec_u16, narrow_wide_gar_bar, Barcode},
+    commons::{map_bits_to_vec_u16, Barcode},
     Code,
 };
 
@@ -68,6 +68,14 @@ static INDEX_MAP: &[char] = &[
 pub enum Code93Error {
     InvalidMessage,
 }
+impl Display for Code93Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Code93Error::InvalidMessage => write!(f, "the message is invalid"),
+        }
+    }
+}
+impl Error for Code93Error {}
 
 pub struct Code93<'a> {
     _data: &'a PhantomData<u8>,

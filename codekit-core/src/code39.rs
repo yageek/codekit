@@ -1,5 +1,5 @@
 use lazy_static::lazy_static;
-use std::{collections::HashMap, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
 
 use crate::{
     commons::{narrow_wide_gar_bar, Barcode},
@@ -61,6 +61,14 @@ lazy_static! {
 pub enum Code39Error {
     InvalidMessage,
 }
+impl Display for Code39Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Code39Error::InvalidMessage => write!(f, "the message is invalid"),
+        }
+    }
+}
+impl Error for Code39Error {}
 
 pub struct Code39<'a> {
     _data: &'a PhantomData<u8>,

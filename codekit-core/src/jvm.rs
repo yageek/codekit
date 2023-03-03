@@ -81,7 +81,7 @@ mod cache {
             &env,
             "net/yageek/codekit/CodeDescriptor",
             "<init>",
-            "(Lnet/yageek/codekit/CodeOptions;Ljava/nio/ByteBuffer;)V",
+            "(Lnet/yageek/codekit/CodeOptions;[B)V",
         );
 
         debug!("Init cache ended");
@@ -149,8 +149,8 @@ pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
         .expect("Couldn't get java string!")
         .into();
 
+    // Let's trace the input element
     trace!("Input element: {}", input);
-    // Let's retrieve the options
 
     let quiet_space: u16 = env
         .call_method(options, "getQuietSpace", "()I", &[])
@@ -169,6 +169,7 @@ pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
         .ok()
         .unwrap_or(50);
     trace!("Codeheight space element: {}", code_height);
+
     let border_width = env
         .call_method(options, "getBorderWidth", "()I", &[])
         .expect("valid value")
@@ -178,21 +179,26 @@ pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
         .ok()
         .unwrap_or(0);
     trace!("border space element: {}", border_width);
+
     let roptions = CodeOptions {
         quiet_space,
         code_height,
         border_width,
     };
-    trace!("Descriptor creationg");
+    trace!("Descriptor creation");
+
     let descriptor = EAN8::make_descriptor(&input, roptions).expect("valid code");
     trace!("Descriptor converted");
 
-    let mut bars = descriptor.get_bars();
+    let bars: Vec<_> = descriptor
+        .get_bars()
+        .into_iter()
+        .map(|value| value as i8)
+        .collect();
 
     trace!("Creating buffer converted");
-    let buffer = env
-        .new_direct_byte_buffer(&mut bars)
-        .expect("valid element");
+    let buffer = env.new_byte_array(bars.len() as i32).expect("valid array");
+    env.set_byte_array_region(buffer, 0, &bars[..]).unwrap();
 
     // Now that we have the descriptor
     // We can convert back to java
@@ -206,8 +212,6 @@ pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
             ],
         )
         .expect("valid object");
-
-    trace!("Will return");
     // Finally, extract the raw pointer to return.
     output.into_inner()
 }

@@ -7,10 +7,11 @@ import java.util.Vector;
 public class CodeDescriptor {
 
     public final CodeOptions options;
-    private final ByteBuffer bars;
+    final byte[] bars;
 
-    public CodeDescriptor(CodeOptions options, ByteBuffer bars) {
+    protected CodeDescriptor(CodeOptions options, byte[] bars) {
         this.options = options;
         this.bars = bars;
     }
+
 }

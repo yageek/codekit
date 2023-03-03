@@ -66,10 +66,10 @@
 	CFMutableDataRef codeLine = CFDataCreateMutable(NULL, totalBytesPerLine);
 	
 	// We add the left border
-	CFDataAppendBytes(codeLine, &borderLine[0], borderWidth*bytesPerPixel);
+	CFDataAppendBytes(codeLine, &borderLine[0], borderWidth*bytesPerPixel); // WARNING
 	
 	// We add the left spacing
-	CFDataAppendBytes(codeLine, &emptyLine[0], quietSpace*bytesPerPixel);
+	CFDataAppendBytes(codeLine, &emptyLine[0], quietSpace*bytesPerPixel); // WARNING
 	
 	// We add the bar elemeent
 	UInt32 buff;

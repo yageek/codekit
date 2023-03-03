@@ -3,7 +3,7 @@ use std::ops::BitAnd;
 /// An internal type for encoder
 pub(crate) trait Barcode {
     type Input;
-    type Error;
+    type Error: std::error::Error;
 
     /// Return the descriptor for the code
     fn make_descriptor(input: Self::Input, options: CodeOptions) -> Result<Code, Self::Error>;

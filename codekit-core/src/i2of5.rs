@@ -1,4 +1,4 @@
-use std::{collections::HashMap, marker::PhantomData};
+use std::{collections::HashMap, error::Error, fmt::Display, marker::PhantomData};
 
 use lazy_static::lazy_static;
 
@@ -26,6 +26,15 @@ lazy_static! {
 pub enum I2of5Error {
     InvalidMessage,
 }
+
+impl Display for I2of5Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            I2of5Error::InvalidMessage => write!(f, "the message is invalid"),
+        }
+    }
+}
+impl Error for I2of5Error {}
 
 pub struct I2of5<'a> {
     _data: &'a PhantomData<u8>,
