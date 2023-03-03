@@ -23,7 +23,8 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("net.yageek.codekit.test", appContext.getPackageName());
 
-        String value = CodeKit.makeEAN8("Hello");
-        assertEquals("Hello, Hello!", value);
+        CodeOptions options = new CodeOptions(7, 50, 0);
+        CodeDescriptor value = CodeKit.makeEAN8("6583-3254", options);
+        System.out.println("Value:" + value);
     }
 }

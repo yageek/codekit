@@ -11,4 +11,16 @@ public class CodeOptions {
         this.quietSpace = quietSpace;
         this.borderWidth = borderWidth;
     }
+
+    public int getCodeHeight() {
+        return codeHeight;
+    }
+
+    public int getQuietSpace() {
+        return quietSpace;
+    }
+
+    public int getBorderWidth() {
+        return borderWidth;
+    }
 }
