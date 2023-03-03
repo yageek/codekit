@@ -212,7 +212,6 @@ pub struct EAN8<'a> {
 
 impl<'a> Barcode for EAN8<'a> {
     type Error = EANParseError;
-    type Input = &'a str;
 
     fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, EANParseError> {
         let digits = EANCode::parse_digit(input)?;
@@ -227,7 +226,6 @@ pub struct EAN13<'a> {
 
 impl<'a> Barcode for EAN13<'a> {
     type Error = EANParseError;
-    type Input = &'a str;
 
     fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, EANParseError> {
         let digits = EANCode::parse_digit(input)?;

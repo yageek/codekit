@@ -69,12 +69,10 @@ impl<'a> Codabar<'a> {
     }
 }
 impl<'a> Barcode for Codabar<'a> {
-    type Input = &'a str;
-
     type Error = CodabarError;
 
     fn make_descriptor(
-        input: Self::Input,
+        input: &str,
         options: crate::CodeOptions,
     ) -> Result<crate::Code, Self::Error> {
         let patterns = Codabar::parse_message(input)?;

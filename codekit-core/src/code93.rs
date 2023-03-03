@@ -130,10 +130,9 @@ impl<'a> Code93<'a> {
 
 impl<'a> Barcode for Code93<'a> {
     type Error = Code93Error;
-    type Input = &'a str;
 
     fn make_descriptor(
-        input: Self::Input,
+        input: &str,
         options: crate::CodeOptions,
     ) -> Result<crate::Code, Self::Error> {
         let patterns = Code93::parse_message(input)?;

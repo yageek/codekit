@@ -98,13 +98,13 @@ pub extern "C" fn codekit_code_create_i2of5(
 }
 
 /// Internal generic method
-fn create_code_from_str<'a, T>(
+fn create_code_from_str<T>(
     content: *const c_char,
     options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8
 where
-    T: Barcode<Input = &'a str>,
+    T: Barcode,
 {
     assert!(!content.is_null());
     // We need to convert a string from C world

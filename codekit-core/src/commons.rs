@@ -2,11 +2,10 @@ use std::ops::BitAnd;
 
 /// An internal type for encoder
 pub(crate) trait Barcode {
-    type Input;
     type Error: std::error::Error;
 
     /// Return the descriptor for the code
-    fn make_descriptor(input: Self::Input, options: CodeOptions) -> Result<Code, Self::Error>;
+    fn make_descriptor(input: &str, options: CodeOptions) -> Result<Code, Self::Error>;
 }
 
 /// A structure holding
@@ -64,7 +63,7 @@ impl Code {
         self.options
     }
 
-    #[cfg(feature = "ffi-interface")]
+    #[cfg(any(feature = "ffi-interface", feature = "jni-interface"))]
     pub fn get_bars(self) -> Vec<u8> {
         self.bars
     }

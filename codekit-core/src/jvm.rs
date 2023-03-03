@@ -5,12 +5,13 @@ use jni::{JNIEnv, JavaVM};
 // These objects are what you should use as arguments to your native
 // function. They carry extra lifetime information to prevent them escaping
 // this context and getting used after being GC'd.
-use jni::objects::{JClass, JString, JValue};
+
+use jni::objects::{JClass, JObject, JString, JValue};
 
 // This is just a pointer. We'll be returning it from our function. We
 // can't return one of the objects with lifetime information because the
 // lifetime checker won't let us.
-use jni::sys::{jint, jobject, jstring, JNI_VERSION_1_6};
+use jni::sys::{jint, jobject, JNI_VERSION_1_6};
 use log::{debug, trace};
 
 #[cfg(target_os = "android")]
@@ -19,8 +20,8 @@ use android_logger::Config;
 use log::Level;
 
 use crate::commons::Barcode;
-use crate::ean::EAN8;
 use crate::CodeOptions;
+use anyhow::Result;
 
 #[cfg(target_os = "android")]
 fn setup_android_logger() {
@@ -54,9 +55,6 @@ mod cache {
     use log::{debug, trace};
 
     static INIT: Once = Once::new();
-
-    static mut MODEL_CODE_OPTIONS_CLASS: Option<GlobalRef> = None;
-    static mut MODEL_CODE_OPTIONS_INIT: Option<JMethodID> = None;
 
     static mut MODEL_CODE_DESCRIPTOR_CLASS: Option<GlobalRef> = None;
     static mut MODEL_CODE_DESCRIPTOR_INIT: Option<JMethodID> = None;
@@ -130,54 +128,23 @@ mod cache {
     }
 }
 
-// This keeps Rust from "mangling" the name and making it unique for this
-// crate.
-#[no_mangle]
-pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
-    env: JNIEnv,
-    // This is the class that owns our static method. It's not going to be used,
-    // but still must be present to match the expected signature of a static
-    // native method.
-    class: JClass,
-    code: JString,
-    options: jobject,
-) -> jstring {
-    // First, we have to get the string out of Java. Check out the `strings`
-    // module for more info on how this works.
-    let input: String = env
-        .get_string(code)
-        .expect("Couldn't get java string!")
-        .into();
-
-    // Let's trace the input element
-    trace!("Input element: {}", input);
-
+fn get_code_options(env: JNIEnv, options: jobject) -> Result<CodeOptions> {
     let quiet_space: u16 = env
-        .call_method(options, "getQuietSpace", "()I", &[])
-        .expect("valid value")
-        .i()
-        .unwrap()
-        .try_into()
-        .ok()
-        .unwrap_or(7);
+        .call_method(options, "getQuietSpace", "()I", &[])?
+        .i()?
+        .try_into()?;
     trace!("Quiet space element: {}", quiet_space);
 
-    let code_height = env
-        .call_method(options, "getCodeHeight", "()I", &[])
-        .expect("valid value")
-        .try_into()
-        .ok()
-        .unwrap_or(50);
+    let code_height: u16 = env
+        .call_method(options, "getCodeHeight", "()I", &[])?
+        .try_into()?;
     trace!("Codeheight space element: {}", code_height);
 
-    let border_width = env
-        .call_method(options, "getBorderWidth", "()I", &[])
-        .expect("valid value")
-        .i()
-        .unwrap()
-        .try_into()
-        .ok()
-        .unwrap_or(0);
+    let border_width: u16 = env
+        .call_method(options, "getBorderWidth", "()I", &[])?
+        .i()?
+        .try_into()?;
+
     trace!("border space element: {}", border_width);
 
     let roptions = CodeOptions {
@@ -185,33 +152,97 @@ pub extern "system" fn Java_net_yageek_codekit_CodeKit_makeEAN8(
         code_height,
         border_width,
     };
-    trace!("Descriptor creation");
 
-    let descriptor = EAN8::make_descriptor(&input, roptions).expect("valid code");
+    Ok(roptions)
+}
+
+fn compute_descriptor_from_string<B>(
+    env: JNIEnv,
+    _class: JClass,
+    code: JString,
+    options: jobject,
+) -> Result<jobject>
+where
+    B: Barcode,
+    <B as Barcode>::Error: Sync + Send + 'static,
+{
+    trace!("Descriptor creation");
+    let roptions = get_code_options(env, options)?;
+    let input: String = env.get_string(code)?.into();
+
+    let code = B::make_descriptor(&input, roptions)?;
     trace!("Descriptor converted");
 
-    let bars: Vec<_> = descriptor
+    let bars: Vec<_> = code
         .get_bars()
         .into_iter()
         .map(|value| value as i8)
         .collect();
 
     trace!("Creating buffer converted");
-    let buffer = env.new_byte_array(bars.len() as i32).expect("valid array");
-    env.set_byte_array_region(buffer, 0, &bars[..]).unwrap();
+    let buffer = env.new_byte_array(bars.len() as i32)?;
+    env.set_byte_array_region(buffer, 0, &bars[..])?;
 
     // Now that we have the descriptor
     // We can convert back to java
-    let output = env
-        .new_object_unchecked(
-            &cache::code_descriptor_class(),
-            cache::code_descriptor_init(),
-            &[
-                JValue::Object(options.into()),
-                JValue::Object(buffer.into()),
-            ],
-        )
-        .expect("valid object");
+    let output = env.new_object_unchecked(
+        &cache::code_descriptor_class(),
+        cache::code_descriptor_init(),
+        &[
+            JValue::Object(options.into()),
+            JValue::Object(buffer.into()),
+        ],
+    )?;
     // Finally, extract the raw pointer to return.
-    output.into_inner()
+    let result: jobject = output.into_inner();
+
+    Ok(result)
 }
+
+fn jni_descriptor_from_string<B>(
+    env: JNIEnv,
+    class: JClass,
+    code: JString,
+    options: jobject,
+) -> jobject
+where
+    B: Barcode,
+    <B as Barcode>::Error: Sync + Send + 'static,
+{
+    match compute_descriptor_from_string::<B>(env, class, code, options) {
+        Ok(desc) => return desc,
+        Err(e) => {
+            env.throw(format!("error creating the code: {}", e))
+                .unwrap();
+            JObject::null().into_inner()
+        }
+    }
+}
+
+macro_rules! jni_call {
+    ($t:ty) => {
+        paste::item! {
+        #[no_mangle]
+        pub extern "system" fn [< Java_net_yageek_codekit_CodeKit_make $t >](
+            env: JNIEnv,
+            // This is the class that owns our static method. It's not going to be used,
+            // but still must be present to match the expected signature of a static
+            // native method.
+            class: JClass,
+            code: JString,
+            options: jobject,
+        ) -> jobject {
+            jni_descriptor_from_string::<$t>(env, class, code, options)
+        }
+        }
+    };
+}
+
+use crate::{Codabar, Code39, Code93, I2of5, EAN13, EAN8};
+jni_call!(EAN8);
+
+jni_call!(EAN13);
+jni_call!(Codabar);
+jni_call!(Code39);
+jni_call!(Code93);
+jni_call!(I2of5);

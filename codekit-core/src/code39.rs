@@ -99,8 +99,6 @@ impl<'a> Code39<'a> {
 }
 impl<'a> Barcode for Code39<'a> {
     type Error = Code39Error;
-    type Input = &'a str;
-
     fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, Code39Error> {
         let patterns = Code39::parse_message(input)?;
 
