@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef struct CodeKitVec_u8 CodeKitVec_u8;
-
 typedef struct CodeKitCodeOptions {
   float quiet_space;
   float code_height;
@@ -13,9 +11,8 @@ typedef struct CodeKitCodeOptions {
 
 typedef struct CodeKitCodeDescriptor {
   struct CodeKitCodeOptions options;
-  const uint8_t *bars;
+  uint8_t *bars;
   uintptr_t bars_count;
-  struct CodeKitVec_u8 *inner;
 } CodeKitCodeDescriptor;
 
 void codekit_free_descriptor(struct CodeKitCodeDescriptor *ptr);

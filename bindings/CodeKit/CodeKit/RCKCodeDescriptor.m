@@ -8,42 +8,20 @@
 #import "RCKCodeDescriptor.h"
 #import "CodeKit-Core.h"
 
-@implementation RCKCodeDescriptor {
-	CodeKitCodeDescriptor *_descriptor;
-}
-
--(instancetype) initWithCoreDescriptor:(CodeKitCodeDescriptor*)descriptor {
-	
+@implementation RCKCodeDescriptor
+@synthesize data = _data, borderWidth = _borderWidth, barCodeHeight = _barCodeHeight, quietSpace = _quietSpace;
+-(instancetype) initWithCoreDescriptor:(CodeKitCodeDescriptor)descriptor {
 	self = [super init];
 	
 	if (self) {
 		
-		_descriptor = descriptor;
+		_data = [NSData dataWithBytes:descriptor.bars length:descriptor.bars_count];
+		_borderWidth = descriptor.options.border_width;
+		_quietSpace = descriptor.options.quiet_space;
+		_barCodeHeight = descriptor.options.code_height;
 	}
 	return self;
 }
-- (void)dealloc {
-	codekit_free_descriptor(_descriptor);
-}
 #pragma mark - Getter
-
-- (CGFloat)borderWidth {
-	return _descriptor->options.border_width;
-}
-
-- (CGFloat)barCodeHeight {
-	return _descriptor->options.code_height;
-}
-- (CGFloat)quietSpace {
-	return _descriptor->options.quiet_space;
-}
-#pragma mark - Private
--(NSInteger) barsCount {
-	return _descriptor->bars_count;
-}
-
--(const uint8_t*) headPointer {
-	return _descriptor->bars;
-}
 
 @end

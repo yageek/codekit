@@ -20,6 +20,18 @@
 	// Do any additional setup after loading the view.
 	
 	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+	
+	CIFilter *filter = [CIFilter filterWithName:@"RCKEAN8CodeGenerator"];
+	NSLog(@"Attributes: %@", filter.attributes);
+	[filter setValue:@"4719-5127" forKey:@"codeValue"];
+	
+	CIImage *image = filter.outputImage;
+	
+	CGFloat scaleX = CGRectGetWidth(self.imageView.frame)/CGRectGetWidth(image.extent);
+	CGAffineTransform tr = CGAffineTransformScale(CGAffineTransformIdentity, scaleX, scaleX);
+	CIImage *scaled = [image imageByApplyingTransform:tr];
+	UIImage *uiImage = [UIImage imageWithCIImage:scaled];
+	self.imageView.image = uiImage;
 }
 
 

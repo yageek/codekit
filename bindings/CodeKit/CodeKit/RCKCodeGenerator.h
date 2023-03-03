@@ -6,9 +6,11 @@
 //
 
 #import <CoreImage/CoreImage.h>
-#import "RCKCodeDescriptor.h"
+#import <CodeKit/RCKCodeDescriptor.h>
 
-@interface RCKCodeGenerator : CIFilter
+@interface RCKCodeGenerator : CIFilter {
+	RCKCodeDescriptor* _barCodeDescriptor;
+}
 @property(nonatomic, strong, nullable) RCKCodeDescriptor* barCodeDescriptor;
 @end
 

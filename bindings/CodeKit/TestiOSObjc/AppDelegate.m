@@ -6,16 +6,20 @@
 //
 
 #import "AppDelegate.h"
-
+#import <CodeKit/CodeKit.h>
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+	RCKCodeKit *instance;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	instance = [[RCKCodeKit alloc] init];
+	[instance registerFilters];
 	return YES;
 }
 
