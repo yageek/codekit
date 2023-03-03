@@ -131,10 +131,7 @@ impl<'a> Code93<'a> {
 impl<'a> Barcode for Code93<'a> {
     type Error = Code93Error;
 
-    fn make_descriptor(
-        input: &str,
-        options: crate::CodeOptions,
-    ) -> Result<crate::Code, Self::Error> {
+    fn make_descriptor(input: &str) -> Result<crate::Code, Self::Error> {
         let patterns = Code93::parse_message(input)?;
 
         let mut bars: Vec<_> = patterns
@@ -143,13 +140,13 @@ impl<'a> Barcode for Code93<'a> {
             .collect();
 
         bars.push(1);
-        Ok(Code::new(bars, options))
+        Ok(Code::new(bars))
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::{commons::Barcode, CodeOptions};
+    use crate::commons::Barcode;
 
     use super::Code93;
 
@@ -161,6 +158,6 @@ mod tests {
 
     #[test]
     fn test_compute_elements() {
-        Code93::make_descriptor("TEST93", CodeOptions::default()).expect("invalid element");
+        Code93::make_descriptor("TEST93").expect("invalid element");
     }
 }

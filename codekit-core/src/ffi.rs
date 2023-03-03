@@ -7,15 +7,12 @@ use crate::{
     commons::Barcode,
     ean::{EAN13, EAN8},
     i2of5::I2of5,
-    CodeOptions,
 };
 
 /// A descriptors holding all the
 /// informations to draw a code
 #[repr(C)]
 pub struct CodeDescriptor {
-    /// The options used to draw the code
-    pub options: CodeOptions,
     /// A pointer in memory to an array
     /// of byte where each one represent either a blank (0) or black (1) bar
     pub bars: *mut u8,
@@ -41,68 +38,58 @@ pub extern "C" fn codekit_free_descriptor(ptr: *mut CodeDescriptor) {
 #[no_mangle]
 pub extern "C" fn codekit_code_create_ean8(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<EAN8>(content, options, value)
+    create_code_from_str::<EAN8>(content, value)
 }
 
 /// Create a descriptor for EAN8 code
 #[no_mangle]
 pub extern "C" fn codekit_code_create_ean13(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<EAN13>(content, options, value)
+    create_code_from_str::<EAN13>(content, value)
 }
 
 /// Create a descriptor for a Code39 code.
 #[no_mangle]
 pub extern "C" fn codekit_code_create_code39(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<Code39>(content, options, value)
+    create_code_from_str::<Code39>(content, value)
 }
 
 /// Create a descriptor for a Code93 code.
 #[no_mangle]
 pub extern "C" fn codekit_code_create_code93(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<Code93>(content, options, value)
+    create_code_from_str::<Code93>(content, value)
 }
 
 /// Create a descriptor for a Codabar code.
 #[no_mangle]
 pub extern "C" fn codekit_code_create_codabar(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<Codabar>(content, options, value)
+    create_code_from_str::<Codabar>(content, value)
 }
 
 /// Create a descriptor for a Interleaved code.
 #[no_mangle]
 pub extern "C" fn codekit_code_create_i2of5(
     content: *const c_char,
-    options: CodeOptions,
     value: *mut CodeDescriptor,
 ) -> i8 {
-    create_code_from_str::<I2of5>(content, options, value)
+    create_code_from_str::<I2of5>(content, value)
 }
 
 /// Internal generic method
-fn create_code_from_str<T>(
-    content: *const c_char,
-    options: CodeOptions,
-    value: *mut CodeDescriptor,
-) -> i8
+fn create_code_from_str<T>(content: *const c_char, value: *mut CodeDescriptor) -> i8
 where
     T: Barcode,
 {
@@ -112,10 +99,9 @@ where
 
     let input = input_string.to_str().unwrap();
 
-    match T::make_descriptor(input, options) {
+    match T::make_descriptor(input) {
         Ok(code) => {
             unsafe {
-                (*value).options = code.options();
                 (*value).bars_count = code.bars().len();
 
                 // Now we need to move the elements to the heap

@@ -99,7 +99,7 @@ impl<'a> Code39<'a> {
 }
 impl<'a> Barcode for Code39<'a> {
     type Error = Code39Error;
-    fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, Code39Error> {
+    fn make_descriptor(input: &str) -> Result<Code, Code39Error> {
         let patterns = Code39::parse_message(input)?;
 
         let bars: Vec<_> = patterns
@@ -116,7 +116,7 @@ impl<'a> Barcode for Code39<'a> {
                 grouped.push(0);
             }
         }
-        Ok(Code::new(grouped, options))
+        Ok(Code::new(grouped))
     }
 }
 

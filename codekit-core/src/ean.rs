@@ -1,6 +1,6 @@
 use std::{error::Error, fmt::Display, marker::PhantomData};
 
-use crate::commons::{map_bits_to_vec, Barcode, Code, CodeOptions};
+use crate::commons::{map_bits_to_vec, Barcode, Code};
 
 //  See [IAN/EAN wikipedia page](https://en.wikipedia.org/wiki/International_Article_Number)
 const EAN_PATTERNS: [[u8; 3]; 10] = [
@@ -161,7 +161,7 @@ impl<'a> EANCode<'a> {
         }
     }
 
-    fn to_code(self, options: CodeOptions) -> Result<Code, EANParseError> {
+    fn to_code(self) -> Result<Code, EANParseError> {
         let mut bars: Vec<u8> = vec![1, 0, 1];
 
         let mut left_elements: Vec<_> = self
@@ -202,7 +202,7 @@ impl<'a> EANCode<'a> {
 
         // End guards
         bars.append(&mut vec![1, 0, 1]);
-        Ok(Code::new(bars, options))
+        Ok(Code::new(bars))
     }
 }
 
@@ -213,10 +213,10 @@ pub struct EAN8<'a> {
 impl<'a> Barcode for EAN8<'a> {
     type Error = EANParseError;
 
-    fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, EANParseError> {
+    fn make_descriptor(input: &str) -> Result<Code, EANParseError> {
         let digits = EANCode::parse_digit(input)?;
         let desc = EANCode::new_ean8(&digits)?;
-        desc.to_code(options)
+        desc.to_code()
     }
 }
 
@@ -227,16 +227,16 @@ pub struct EAN13<'a> {
 impl<'a> Barcode for EAN13<'a> {
     type Error = EANParseError;
 
-    fn make_descriptor(input: &str, options: crate::CodeOptions) -> Result<Code, EANParseError> {
+    fn make_descriptor(input: &str) -> Result<Code, EANParseError> {
         let digits = EANCode::parse_digit(input)?;
         let desc = EANCode::new_ean13(&digits)?;
-        desc.to_code(options)
+        desc.to_code()
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::{commons::Barcode, CodeOptions};
+    use crate::commons::Barcode;
 
     use super::{EANCode, EAN13};
 
@@ -281,7 +281,7 @@ mod tests {
 
     #[test]
     fn test_descriptor() {
-        let code = EAN13::make_descriptor("5901234123457", CodeOptions::default()).unwrap();
+        let code = EAN13::make_descriptor("5901234123457").unwrap();
         let expected: Vec<u8> = vec![
             1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0,
             1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1,

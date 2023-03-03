@@ -71,10 +71,7 @@ impl<'a> Codabar<'a> {
 impl<'a> Barcode for Codabar<'a> {
     type Error = CodabarError;
 
-    fn make_descriptor(
-        input: &str,
-        options: crate::CodeOptions,
-    ) -> Result<crate::Code, Self::Error> {
+    fn make_descriptor(input: &str) -> Result<crate::Code, Self::Error> {
         let patterns = Codabar::parse_message(input)?;
 
         let bars: Vec<_> = patterns
@@ -91,6 +88,6 @@ impl<'a> Barcode for Codabar<'a> {
                 grouped.push(0);
             }
         }
-        Ok(Code::new(grouped, options))
+        Ok(Code::new(grouped))
     }
 }

@@ -20,7 +20,6 @@ use android_logger::Config;
 use log::Level;
 
 use crate::commons::Barcode;
-use crate::CodeOptions;
 use anyhow::Result;
 
 #[cfg(target_os = "android")]
@@ -128,49 +127,15 @@ mod cache {
     }
 }
 
-fn get_code_options(env: JNIEnv, options: jobject) -> Result<CodeOptions> {
-    let quiet_space: u16 = env
-        .call_method(options, "getQuietSpace", "()I", &[])?
-        .i()?
-        .try_into()?;
-    trace!("Quiet space element: {}", quiet_space);
-
-    let code_height: u16 = env
-        .call_method(options, "getCodeHeight", "()I", &[])?
-        .try_into()?;
-    trace!("Codeheight space element: {}", code_height);
-
-    let border_width: u16 = env
-        .call_method(options, "getBorderWidth", "()I", &[])?
-        .i()?
-        .try_into()?;
-
-    trace!("border space element: {}", border_width);
-
-    let roptions = CodeOptions {
-        quiet_space,
-        code_height,
-        border_width,
-    };
-
-    Ok(roptions)
-}
-
-fn compute_descriptor_from_string<B>(
-    env: JNIEnv,
-    _class: JClass,
-    code: JString,
-    options: jobject,
-) -> Result<jobject>
+fn compute_descriptor_from_string<B>(env: JNIEnv, _class: JClass, code: JString) -> Result<jobject>
 where
     B: Barcode,
     <B as Barcode>::Error: Sync + Send + 'static,
 {
     trace!("Descriptor creation");
-    let roptions = get_code_options(env, options)?;
     let input: String = env.get_string(code)?.into();
 
-    let code = B::make_descriptor(&input, roptions)?;
+    let code = B::make_descriptor(&input)?;
     trace!("Descriptor converted");
 
     let bars: Vec<_> = code
@@ -188,10 +153,7 @@ where
     let output = env.new_object_unchecked(
         &cache::code_descriptor_class(),
         cache::code_descriptor_init(),
-        &[
-            JValue::Object(options.into()),
-            JValue::Object(buffer.into()),
-        ],
+        &[JValue::Object(buffer.into())],
     )?;
     // Finally, extract the raw pointer to return.
     let result: jobject = output.into_inner();
@@ -199,17 +161,12 @@ where
     Ok(result)
 }
 
-fn jni_descriptor_from_string<B>(
-    env: JNIEnv,
-    class: JClass,
-    code: JString,
-    options: jobject,
-) -> jobject
+fn jni_descriptor_from_string<B>(env: JNIEnv, class: JClass, code: JString) -> jobject
 where
     B: Barcode,
     <B as Barcode>::Error: Sync + Send + 'static,
 {
-    match compute_descriptor_from_string::<B>(env, class, code, options) {
+    match compute_descriptor_from_string::<B>(env, class, code) {
         Ok(desc) => return desc,
         Err(e) => {
             env.throw(format!("error creating the code: {}", e))
@@ -230,9 +187,8 @@ macro_rules! jni_call {
             // native method.
             class: JClass,
             code: JString,
-            options: jobject,
         ) -> jobject {
-            jni_descriptor_from_string::<$t>(env, class, code, options)
+            jni_descriptor_from_string::<$t>(env, class, code)
         }
         }
     };

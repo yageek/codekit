@@ -95,10 +95,7 @@ impl<'a> I2of5<'a> {
 impl<'a> Barcode for I2of5<'a> {
     type Error = I2of5Error;
 
-    fn make_descriptor(
-        input: &str,
-        options: crate::CodeOptions,
-    ) -> Result<crate::Code, Self::Error> {
+    fn make_descriptor(input: &str) -> Result<crate::Code, Self::Error> {
         let patterns = I2of5::parse_message(input)?;
 
         let mut converted = I2of5::interleaved_converted_patterns(patterns)?;
@@ -107,7 +104,7 @@ impl<'a> Barcode for I2of5<'a> {
         bars.append(&mut converted);
         bars.append(&mut vec![1, 1, 0, 1]);
 
-        Ok(Code::new(bars, options))
+        Ok(Code::new(bars))
     }
 }
 

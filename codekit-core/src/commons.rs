@@ -5,62 +5,22 @@ pub(crate) trait Barcode {
     type Error: std::error::Error;
 
     /// Return the descriptor for the code
-    fn make_descriptor(input: &str, options: CodeOptions) -> Result<Code, Self::Error>;
-}
-
-/// A structure holding
-/// the display information to render a bar
-#[repr(C)]
-#[derive(Debug, Clone, Copy)]
-pub struct CodeOptions {
-    /// The quiet space around the bar code
-    pub quiet_space: u16,
-    /// The height of the code
-    pub code_height: u16,
-    /// The border with of the code
-    pub border_width: u16,
-}
-
-impl Default for CodeOptions {
-    fn default() -> Self {
-        CodeOptions {
-            quiet_space: 7,
-            code_height: 50,
-            border_width: 0,
-        }
-    }
+    fn make_descriptor(input: &str) -> Result<Code, Self::Error>;
 }
 
 /// A generic code descriptor
 /// to draw code bar
 pub struct Code {
-    options: CodeOptions,
     bars: Vec<u8>,
 }
 
 impl Code {
-    pub(crate) fn new(bars: Vec<u8>, options: CodeOptions) -> Code {
-        Code { options, bars }
-    }
-    /// Retrieve the border witdh of the code
-    pub fn border_width(&self) -> u16 {
-        self.options.border_width
-    }
-
-    pub fn height(&self) -> u16 {
-        self.options.code_height
-    }
-
-    pub fn quiet_space(&self) -> u16 {
-        self.options.quiet_space
+    pub(crate) fn new(bars: Vec<u8>) -> Code {
+        Code { bars }
     }
 
     pub fn bars(&self) -> &[u8] {
         &self.bars
-    }
-
-    pub fn options(&self) -> CodeOptions {
-        self.options
     }
 
     #[cfg(any(feature = "ffi-interface", feature = "jni-interface"))]
