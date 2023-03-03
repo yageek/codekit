@@ -101,7 +101,7 @@ pub mod ffi {
 
     /// Create a descriptor for a Interleaved code.
     #[no_mangle]
-    pub extern "C" fn codekit_code_creat_i2of5(
+    pub extern "C" fn codekit_code_create_i2of5(
         content: *const c_char,
         options: CodeOptions,
         value: *mut CodeDescriptor,

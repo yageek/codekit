@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		3405732928DB9708006F4F4C /* RCKEAN13CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */; };
 		3405732A28DB9708006F4F4C /* RCKEAN13CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */; };
-		34602A4B28DC8DC300E0D28F /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; };
-		34602A4C28DC8DC300E0D28F /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADA028DA03F100244043 /* CodeKit.docc */; };
 		34C3ADA728DA03F100244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
 		34C3ADAC28DA03F100244043 /* CodeKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3ADAB28DA03F100244043 /* CodeKitTests.m */; };
@@ -29,6 +27,16 @@
 		34C3AE0528DA49AC00244043 /* RCKCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C3AE0328DA49AC00244043 /* RCKCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34C3AE0628DA49AC00244043 /* RCKCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C3AE0428DA49AC00244043 /* RCKCodeKit.m */; };
 		34C3AE0728DA4C5600244043 /* CodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C3AD9C28DA03F100244043 /* CodeKit.framework */; };
+		34D76D1328F83C530045468A /* RCKCode39CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D76D1128F83C530045468A /* RCKCode39CodeGenerator.h */; };
+		34D76D1428F83C530045468A /* RCKCode39CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D76D1228F83C530045468A /* RCKCode39CodeGenerator.m */; };
+		34D76D1828F83D900045468A /* CodeKitCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; };
+		34D76D1928F83D900045468A /* CodeKitCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34602A4A28DC8DC300E0D28F /* CodeKitCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34D76D1D28F83E280045468A /* RCKCode93CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D76D1B28F83E280045468A /* RCKCode93CodeGenerator.h */; };
+		34D76D1E28F83E280045468A /* RCKCode93CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D76D1C28F83E280045468A /* RCKCode93CodeGenerator.m */; };
+		34D76D2128F83F870045468A /* RCKCodabarCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D76D1F28F83F870045468A /* RCKCodabarCodeGenerator.h */; };
+		34D76D2228F83F870045468A /* RCKCodabarCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D76D2028F83F870045468A /* RCKCodabarCodeGenerator.m */; };
+		34D76D2528F840250045468A /* RCKI2of5CodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D76D2328F840250045468A /* RCKI2of5CodeGenerator.h */; };
+		34D76D2628F840250045468A /* RCKI2of5CodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D76D2428F840250045468A /* RCKI2of5CodeGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		34602A4D28DC8DC300E0D28F /* Embed Frameworks */ = {
+		34D76D1A28F83D900045468A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				34602A4C28DC8DC300E0D28F /* CodeKitCore.xcframework in Embed Frameworks */,
+				34D76D1928F83D900045468A /* CodeKitCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +90,14 @@
 		34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKEAN8CodeGenerator.m; sourceTree = "<group>"; };
 		34C3AE0328DA49AC00244043 /* RCKCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCodeKit.h; sourceTree = "<group>"; };
 		34C3AE0428DA49AC00244043 /* RCKCodeKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCodeKit.m; sourceTree = "<group>"; };
+		34D76D1128F83C530045468A /* RCKCode39CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCode39CodeGenerator.h; sourceTree = "<group>"; };
+		34D76D1228F83C530045468A /* RCKCode39CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCode39CodeGenerator.m; sourceTree = "<group>"; };
+		34D76D1B28F83E280045468A /* RCKCode93CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCode93CodeGenerator.h; sourceTree = "<group>"; };
+		34D76D1C28F83E280045468A /* RCKCode93CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCode93CodeGenerator.m; sourceTree = "<group>"; };
+		34D76D1F28F83F870045468A /* RCKCodabarCodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKCodabarCodeGenerator.h; sourceTree = "<group>"; };
+		34D76D2028F83F870045468A /* RCKCodabarCodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKCodabarCodeGenerator.m; sourceTree = "<group>"; };
+		34D76D2328F840250045468A /* RCKI2of5CodeGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCKI2of5CodeGenerator.h; sourceTree = "<group>"; };
+		34D76D2428F840250045468A /* RCKI2of5CodeGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCKI2of5CodeGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34602A4B28DC8DC300E0D28F /* CodeKitCore.xcframework in Frameworks */,
+				34D76D1828F83D900045468A /* CodeKitCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,23 +128,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3405732628DB96FA006F4F4C /* EAN */ = {
+		3405732B28DB994D006F4F4C /* Filters */ = {
 			isa = PBXGroup;
 			children = (
 				34C3ADFF28DA441900244043 /* RCKEAN8CodeGenerator.h */,
 				34C3AE0028DA441900244043 /* RCKEAN8CodeGenerator.m */,
 				3405732728DB9708006F4F4C /* RCKEAN13CodeGenerator.h */,
 				3405732828DB9708006F4F4C /* RCKEAN13CodeGenerator.m */,
-			);
-			path = EAN;
-			sourceTree = "<group>";
-		};
-		3405732B28DB994D006F4F4C /* Filters */ = {
-			isa = PBXGroup;
-			children = (
-				3405732628DB96FA006F4F4C /* EAN */,
 				34C3ADBE28DA116300244043 /* RCKCodeGenerator.h */,
 				34C3ADBF28DA116300244043 /* RCKCodeGenerator.m */,
+				34D76D1128F83C530045468A /* RCKCode39CodeGenerator.h */,
+				34D76D1228F83C530045468A /* RCKCode39CodeGenerator.m */,
+				34D76D1B28F83E280045468A /* RCKCode93CodeGenerator.h */,
+				34D76D1C28F83E280045468A /* RCKCode93CodeGenerator.m */,
+				34D76D1F28F83F870045468A /* RCKCodabarCodeGenerator.h */,
+				34D76D2028F83F870045468A /* RCKCodabarCodeGenerator.m */,
+				34D76D2328F840250045468A /* RCKI2of5CodeGenerator.h */,
+				34D76D2428F840250045468A /* RCKI2of5CodeGenerator.m */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -208,9 +224,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C3AE0128DA441900244043 /* RCKEAN8CodeGenerator.h in Headers */,
+				34D76D1328F83C530045468A /* RCKCode39CodeGenerator.h in Headers */,
+				34D76D1D28F83E280045468A /* RCKCode93CodeGenerator.h in Headers */,
 				34C3ADAD28DA03F100244043 /* CodeKit.h in Headers */,
 				34C3ADC028DA116300244043 /* RCKCodeGenerator.h in Headers */,
+				34D76D2128F83F870045468A /* RCKCodabarCodeGenerator.h in Headers */,
 				3405732928DB9708006F4F4C /* RCKEAN13CodeGenerator.h in Headers */,
+				34D76D2528F840250045468A /* RCKI2of5CodeGenerator.h in Headers */,
 				34C3AE0528DA49AC00244043 /* RCKCodeKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +246,7 @@
 				34C3AD9828DA03F100244043 /* Sources */,
 				34C3AD9928DA03F100244043 /* Frameworks */,
 				34C3AD9A28DA03F100244043 /* Resources */,
-				34602A4D28DC8DC300E0D28F /* Embed Frameworks */,
+				34D76D1A28F83D900045468A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -346,9 +366,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C3ADA128DA03F100244043 /* CodeKit.docc in Sources */,
+				34D76D2628F840250045468A /* RCKI2of5CodeGenerator.m in Sources */,
 				34C3ADC128DA116300244043 /* RCKCodeGenerator.m in Sources */,
+				34D76D2228F83F870045468A /* RCKCodabarCodeGenerator.m in Sources */,
+				34D76D1428F83C530045468A /* RCKCode39CodeGenerator.m in Sources */,
 				34C3AE0228DA441900244043 /* RCKEAN8CodeGenerator.m in Sources */,
 				34C3AE0628DA49AC00244043 /* RCKCodeKit.m in Sources */,
+				34D76D1E28F83E280045468A /* RCKCode93CodeGenerator.m in Sources */,
 				3405732A28DB9708006F4F4C /* RCKEAN13CodeGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

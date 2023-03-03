@@ -86,6 +86,6 @@ int8_t codekit_code_create_codabar(const char *content,
 /**
  * Create a descriptor for a Interleaved code.
  */
-int8_t codekit_code_creat_i2of5(const char *content,
-                                struct CodeKitCodeOptions options,
-                                struct CodeKitCodeDescriptor *value);
+int8_t codekit_code_create_i2of5(const char *content,
+                                 struct CodeKitCodeOptions options,
+                                 struct CodeKitCodeDescriptor *value);

@@ -17,7 +17,7 @@
 	
 	CodeKitCodeDescriptor desc;
 	CodeKitCodeOptions opts = {.code_height = self.barCodeHeight, .quiet_space = self.quietSpace, .border_width = self.borderWidth };
-	NSInteger res = codekit_code_create_EAN8([codeValue cStringUsingEncoding:NSUTF8StringEncoding], opts, &desc);
+	NSInteger res = codekit_code_create_ean8([codeValue cStringUsingEncoding:NSUTF8StringEncoding], opts, &desc);
 	if (res < 0) {
 		[self raiseErrorForCode:res];
 	}

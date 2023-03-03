@@ -9,7 +9,10 @@
 #import <CoreImage/CoreImage.h>
 NS_ASSUME_NONNULL_BEGIN
 
+/// The interface implementing ``CIFilterContructor``
 @interface RCKCodeKit : NSObject <CIFilterConstructor>
+
+/// Register the filters into CoreImage.
 -(void) registerFilters;
 @end
 
