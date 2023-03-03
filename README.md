@@ -128,6 +128,10 @@ self.imageView.image = uiImage;
 
 ### Android
 
+### Install
+
+You can use gradle/mvn to retrieve the package from [Github Package](https://github.com/yageek/codekit/packages/)
+
 A android AAR element is provided also in the release page.
 
 The library contains functions to create a string of bars (0/1) from a java string

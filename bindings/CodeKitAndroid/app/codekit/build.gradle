@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -12,6 +13,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        publishing {
+            singleVariant("release") {
+                // if you don't want sources/javadoc, remove these lines
+                withSourcesJar()
+                withJavadocJar()
+            }
+        }
     }
 
     buildTypes {
@@ -23,6 +31,29 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/yageek/codekit")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'net.yageek'
+                artifactId 'codekit'
+                version = '1.0.0'
+            }
+        }
     }
 }
 
