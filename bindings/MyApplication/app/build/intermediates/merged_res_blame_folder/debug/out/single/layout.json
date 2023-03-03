@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "net.yageek.myapplication.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "net.yageek.myapplication.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-mergeDebugResources-40:/layout/fragment_first.xml",
+        "source": "net.yageek.myapplication.app-main-43:/layout/fragment_first.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-mergeDebugResources-40:/layout/fragment_second.xml",
+        "source": "net.yageek.myapplication.app-main-43:/layout/fragment_second.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-mergeDebugResources-40:/layout/content_main.xml",
+        "source": "net.yageek.myapplication.app-main-43:/layout/content_main.xml"
+    }
+]

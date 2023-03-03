@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "net.yageek.myapplication.app-pngs-36:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/layout_activity_main.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/menu_menu_main.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/menu/menu_main.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/layout_fragment_first.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/layout/fragment_first.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/drawable_ic_launcher_background.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/xml_data_extraction_rules.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "net.yageek.myapplication.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/navigation_nav_graph.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/layout_content_main.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/layout/content_main.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/layout_fragment_second.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/layout/fragment_second.xml"
+    },
+    {
+        "merged": "net.yageek.myapplication.app-merged_res-41:/xml_backup_rules.xml.flat",
+        "source": "net.yageek.myapplication.app-main-43:/xml/backup_rules.xml"
+    }
+]

@@ -1,0 +1,100 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="net.yageek.myapplication"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:5:5-30:19
+12        android:allowBackup="true"
+12-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.8.0] /Users/heinrichyannick/.gradle/caches/transforms-3/87a796fe63836d99a2198ac6a6284cb3/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+14        android:dataExtractionRules="@xml/data_extraction_rules"
+14-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:7:9-65
+15        android:debuggable="true"
+16        android:fullBackupContent="@xml/backup_rules"
+16-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:8:9-54
+17        android:icon="@mipmap/ic_launcher"
+17-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:9:9-43
+18        android:label="@string/app_name"
+18-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:10:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:11:9-54
+20        android:supportsRtl="true"
+20-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:12:9-35
+21        android:testOnly="true"
+22        android:theme="@style/Theme.MyApplication" >
+22-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:13:9-51
+23        <activity
+23-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:15:9-29:20
+24            android:name="net.yageek.myapplication.MainActivity"
+24-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:16:13-41
+25            android:exported="true"
+25-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:17:13-36
+26            android:label="@string/app_name"
+26-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:18:13-45
+27            android:theme="@style/Theme.MyApplication.NoActionBar" >
+27-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:19:13-67
+28            <intent-filter>
+28-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:20:13-24:29
+29                <action android:name="android.intent.action.MAIN" />
+29-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:21:17-69
+29-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:21:25-66
+30
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:23:17-77
+31-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:23:27-74
+32            </intent-filter>
+33
+34            <meta-data
+34-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:26:13-28:36
+35                android:name="android.app.lib_name"
+35-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:27:17-52
+36                android:value="" />
+36-->/Users/heinrichyannick/Developer/github/codekit/bindings/MyApplication/app/src/main/AndroidManifest.xml:28:17-33
+37        </activity>
+38
+39        <provider
+39-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+40            android:name="androidx.startup.InitializationProvider"
+40-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+41            android:authorities="net.yageek.myapplication.androidx-startup"
+41-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+42            android:exported="false" >
+42-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+43            <meta-data
+43-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+44                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+44-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+45                android:value="androidx.startup" />
+45-->[androidx.emoji2:emoji2:1.2.0] /Users/heinrichyannick/.gradle/caches/transforms-3/c03fa7bc00a04a375204b573f0966d9f/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+46            <meta-data
+46-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/heinrichyannick/.gradle/caches/transforms-3/0ce9e5f033589fdf0ab757f82f7808ec/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+47                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+47-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/heinrichyannick/.gradle/caches/transforms-3/0ce9e5f033589fdf0ab757f82f7808ec/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+48                android:value="androidx.startup" />
+48-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/heinrichyannick/.gradle/caches/transforms-3/0ce9e5f033589fdf0ab757f82f7808ec/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+49        </provider>
+50
+51        <uses-library
+51-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+52            android:name="androidx.window.extensions"
+52-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+53            android:required="false" />
+53-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+54        <uses-library
+54-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+55            android:name="androidx.window.sidecar"
+55-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+56            android:required="false" />
+56-->[androidx.window:window:1.0.0] /Users/heinrichyannick/.gradle/caches/transforms-3/073f10b23065a04cd4c659168bad23fb/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+57    </application>
+58
+59</manifest>
