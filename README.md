@@ -68,7 +68,7 @@ CIImage *image = filter.outputImage;
 ```
 
 ```swift
-let filter = RCKCodeKit.code93Generator();
+let filter = RCKCodeKit.code93Generator()
 filter.codeValue = "TEST93"
 let image = filter.outputImage
 ```
@@ -121,6 +121,64 @@ self.imageView.image = uiImage;
 ### Android
 
 A android AAR element is provided also in the release page.
+
+The library contains functions to create a string of bars (0/1) from a java string
+and one function to create a bitmap from those strings.
+
+The available methods are the following:
+
+```java
+/**
+* Generate an EAN8 code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeEAN8(String code);
+
+/**
+* Generate an EAN13 code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeEAN13(String code);
+
+/**
+* Generate an Codabar code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeCodabar(String code);
+
+/**
+* Generate an Code39 code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeCode39(String code);
+
+/**
+* Generate an Code93 code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeCode93(String code);
+
+/**
+* Generate an Interleave 2 of 5 code
+* @param code A string representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public native static String makeI2Of5(String code);
+
+/**
+* Generate a bitmap image from a CodeDescriptor
+* @param descriptor The descriptor representing the code
+* @return A string representing the bars (1 for black and 0 for white)
+*/
+public static Bitmap convertBitmap(String descriptor, CodeOptions options)
+```
+
+A basic usage could be done as the following:
 
 ```java
 import net.yageek.codekit.CodeKit;
