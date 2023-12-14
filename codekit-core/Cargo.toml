@@ -11,7 +11,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 default = []
 ffi-interface = []
 jni-interface = ['ffi-interface', 'jni',  'paste', 'anyhow']
-wasm-interface = ['wasm-bindgen']
+wasm-interface = ['wasm-bindgen', 'paste']
 
 [dependencies]
 lazy_static = "1.4.0"

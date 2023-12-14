@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>codekit-wasm example</title>
+  </head>
+  <body>
+    <script type="module">
+      import init, { codekit_create_ean8 } from "./codekit.js";
+      init().then(() => {
+
+        try {
+            var code = codekit_create_ean8("65254");
+            alert("Code: " + code);
+        } catch (e) {
+            alert("Invalid code");
+        }
+    
+      });
+    </script>
+  </body>
+</html>

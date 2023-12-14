@@ -1,0 +1,14 @@
+{
+  "name": "codekit-core",
+  "version": "0.1.0",
+  "files": [
+    "codekit_bg.wasm",
+    "codekit.js",
+    "codekit.d.ts"
+  ],
+  "module": "codekit.js",
+  "types": "codekit.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
