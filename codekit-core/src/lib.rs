@@ -18,3 +18,6 @@ pub mod ffi;
 
 #[cfg(feature = "jni-interface")]
 pub mod jvm;
+
+#[cfg(feature = "wasm-interface")]
+pub mod wasm;

@@ -26,7 +26,7 @@ then
     xcodebuild -create-xcframework -output ../bindings/${LIBRARY_NAME}/lib/Apple/release/CodeKitCore.xcframework \
             -library ./target/aarch64-apple-ios/release/${LIBRARY_NAME}.a \
             -headers ../bindings/libcodekit_core/include \
-            -library ./target/universal-apple-ios-sim/release/${LIBRARY_NAME}.a \
+            -library ./target/aarch64-apple-ios-sim/release/${LIBRARY_NAME}.a \
             -headers ../bindings/libcodekit_core/include \
             -library ./target/universal-apple-darwin/release/${LIBRARY_NAME}.a \
             -headers ../bindings/libcodekit_core/include

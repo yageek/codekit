@@ -2,7 +2,10 @@
     "rust-analyzer.cargo.buildScripts.overrideCommand": null,
     "rust-analyzer.cargo.features": [
         "jni-interface",
-        "ffi-interface",
-        "android"
+        "ffi-interface",        
+        "wasm-interface"
+    ],
+    "rust-analyzer.linkedProjects": [
+        "./codekit-core/Cargo.toml"
     ]
 }
