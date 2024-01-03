@@ -11,7 +11,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 default = []
 ffi-interface = []
 jni-interface = ['ffi-interface', 'jni',  'paste', 'anyhow']
-wasm-interface = ['wasm-bindgen', 'paste']
+wasm-interface = ['wasm-bindgen', 'paste', 'js-sys', 'web-sys']
 
 [dependencies]
 lazy_static = "1.4.0"
@@ -19,6 +19,19 @@ libc = { version = "0.2", optional = true }
 jni = { version = "0.21.0", optional = true }
 anyhow = { version ="1.0.69", optional = true }
 paste = { version = "1.0.11", optional = true }
-wasm-bindgen = { version = "0.2.74", optional = true}
+wasm-bindgen = { version = "0.2.74", optional = true }
+js-sys = { version = "0.3.51", optional = true }
+
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+  'CanvasRenderingContext2d',
+  'Document',
+  'Element',
+  'HtmlCanvasElement',
+  'Window',
+]
+optional = true
+
 [build-dependencies]
 cbindgen = { version = "0.24.3", optional = true }

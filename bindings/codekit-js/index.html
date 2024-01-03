@@ -6,16 +6,15 @@
   </head>
   <body>
     <script type="module">
-      import init, { codekit_create_ean8 } from "./codekit.js";
+      import init, { codekit_create_ean8 }  from "./codekit.js";
       init().then(() => {
 
         try {
-            var code = codekit_create_ean8("65254");
+            var code = codekit_create_ean8("65833254");
             alert("Code: " + code);
         } catch (e) {
             alert("Invalid code");
         }
-    
       });
     </script>
   </body>
