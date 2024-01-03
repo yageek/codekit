@@ -5,12 +5,42 @@
 * @returns {string}
 */
 export function codekit_create_ean8(code: string): string;
+/**
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_ean13(code: string): string;
+/**
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_codabar(code: string): string;
+/**
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_code39(code: string): string;
+/**
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_code93(code: string): string;
+/**
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_i2of5(code: string): string;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly codekit_create_ean8: (a: number, b: number, c: number) => void;
+  readonly codekit_create_ean13: (a: number, b: number, c: number) => void;
+  readonly codekit_create_codabar: (a: number, b: number, c: number) => void;
+  readonly codekit_create_code39: (a: number, b: number, c: number) => void;
+  readonly codekit_create_code93: (a: number, b: number, c: number) => void;
+  readonly codekit_create_i2of5: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
