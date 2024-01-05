@@ -128,8 +128,6 @@ self.imageView.image = uiImage;
 
 ### Android
 
-### Install
-
 You can use gradle/mvn to retrieve the package from [Github Package](https://github.com/yageek/codekit/packages/)
 
 A android AAR element is provided also in the release page.
@@ -170,4 +168,57 @@ try {
 } catch (IOException e) {
     e.printStackTrace();
 }
+```
+
+### WebAssembly
+
+Using the `wasm-bindgen` and `web-sys` crates, a webassembly version of the code generator is available.
+You can retrieve the packages from [Github packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
+
+Main functions of the code are the followings:
+
+```js
+// Methods to create String representation of the code
+codekit_create_ean8(code)
+codekit_create_ean13(code)
+codekit_create_codabar(code)
+codekit_create_code39(code)
+codekit_create_code93(code)
+codekit_create_i2of5(code)
+
+// Methods to draw the code in a canvas node
+codekit_draw_ean8(canvasID, barWidth, codeHeight)
+codekit_draw_ean13(canvasID, barWidth, codeHeight)
+codekit_draw_codabar(canvasID, barWidth, codeHeight)
+codekit_draw_code39(canvasID, barWidth, codeHeight)
+codekit_draw_code93(canvasID, barWidth, codeHeight)
+codekit_draw_i2of5(canvasID, barWidth, codeHeight)
+```
+
+Let's see a simple `index.html` file to use this:
+
+```html
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>codekit-wasm example</title>
+  </head>
+  <body>    
+    <script type="module">
+      import init, { codekit_create_ean8, codekit_draw_ean8 }  from "./codekit.js";
+      init().then(() => {
+      
+        try {
+          codekit_draw_ean8('drawing', '65833254', 2, 100);
+        } catch (e) {
+          alert("Invalid code " + e)
+        }         
+      });
+    </script>
+
+    <canvas id="drawing"></canvas>
+  </body>
+</html>
+
 ```

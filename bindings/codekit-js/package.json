@@ -1,5 +1,5 @@
 {
-  "name": "codekit-core",
+  "name": "@yageek/codekit",
   "version": "0.1.0",
   "files": [
     "codekit_bg.wasm",
@@ -10,5 +10,11 @@
   "types": "codekit.d.ts",
   "sideEffects": [
     "./snippets/*"
-  ]
+  ],
+  "author": "Yannick Heinrich <yannick.heinrich@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yageek/codekit"
+  },
+  "license": "MIT"
 }

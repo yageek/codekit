@@ -1,5 +1,25 @@
 let wasm;
 
+const heap = new Array(128).fill(undefined);
+
+heap.push(undefined, null, true, false);
+
+function getObject(idx) { return heap[idx]; }
+
+let heap_next = heap.length;
+
+function dropObject(idx) {
+    if (idx < 132) return;
+    heap[idx] = heap_next;
+    heap_next = idx;
+}
+
+function takeObject(idx) {
+    const ret = getObject(idx);
+    dropObject(idx);
+    return ret;
+}
+
 const cachedTextDecoder = (typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-8', { ignoreBOM: true, fatal: true }) : { decode: () => { throw Error('TextDecoder not available') } } );
 
 if (typeof TextDecoder !== 'undefined') { cachedTextDecoder.decode(); };
@@ -18,12 +38,6 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
-const heap = new Array(128).fill(undefined);
-
-heap.push(undefined, null, true, false);
-
-let heap_next = heap.length;
-
 function addHeapObject(obj) {
     if (heap_next === heap.length) heap.push(heap.length + 1);
     const idx = heap_next;
@@ -31,20 +45,6 @@ function addHeapObject(obj) {
 
     heap[idx] = obj;
     return idx;
-}
-
-function getObject(idx) { return heap[idx]; }
-
-function dropObject(idx) {
-    if (idx < 132) return;
-    heap[idx] = heap_next;
-    heap_next = idx;
-}
-
-function takeObject(idx) {
-    const ret = getObject(idx);
-    dropObject(idx);
-    return ret;
 }
 
 function debugString(val) {
@@ -176,6 +176,7 @@ function getInt32Memory0() {
     return cachedInt32Memory0;
 }
 /**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -207,6 +208,32 @@ export function codekit_create_ean8(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_ean8(canvas_id, code, bar_width, height) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        wasm.codekit_draw_ean8(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        if (r1) {
+            throw takeObject(r0);
+        }
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -238,6 +265,32 @@ export function codekit_create_ean13(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_ean13(canvas_id, code, bar_width, height) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        wasm.codekit_draw_ean13(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        if (r1) {
+            throw takeObject(r0);
+        }
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -269,6 +322,32 @@ export function codekit_create_codabar(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_codabar(canvas_id, code, bar_width, height) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        wasm.codekit_draw_codabar(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        if (r1) {
+            throw takeObject(r0);
+        }
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -300,6 +379,32 @@ export function codekit_create_code39(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_code39(canvas_id, code, bar_width, height) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        wasm.codekit_draw_code39(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        if (r1) {
+            throw takeObject(r0);
+        }
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -331,6 +436,32 @@ export function codekit_create_code93(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_code93(canvas_id, code, bar_width, height) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        wasm.codekit_draw_code93(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        if (r1) {
+            throw takeObject(r0);
+        }
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
@@ -362,19 +493,20 @@ export function codekit_create_i2of5(code) {
 }
 
 /**
+* Draw the $t code in the canvas with the appropriate id
 * @param {string} canvas_id
 * @param {string} code
 * @param {number} bar_width
 * @param {number} height
 */
-export function codekit_draw_ean8(canvas_id, code, bar_width, height) {
+export function codekit_draw_i2of5(canvas_id, code, bar_width, height) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(canvas_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         const ptr1 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len1 = WASM_VECTOR_LEN;
-        wasm.codekit_draw_ean8(retptr, ptr0, len0, ptr1, len1, bar_width, height);
+        wasm.codekit_draw_i2of5(retptr, ptr0, len0, ptr1, len1, bar_width, height);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         if (r1) {
@@ -431,12 +563,12 @@ async function __wbg_load(module, imports) {
 function __wbg_get_imports() {
     const imports = {};
     imports.wbg = {};
+    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
+        takeObject(arg0);
+    };
     imports.wbg.__wbindgen_error_new = function(arg0, arg1) {
         const ret = new Error(getStringFromWasm0(arg0, arg1));
         return addHeapObject(ret);
-    };
-    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
-        takeObject(arg0);
     };
     imports.wbg.__wbindgen_string_new = function(arg0, arg1) {
         const ret = getStringFromWasm0(arg0, arg1);

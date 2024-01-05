@@ -1,54 +1,106 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* Create the string representation of the $t code
 * @param {string} code
 * @returns {string}
 */
 export function codekit_create_ean8(code: string): string;
 /**
-* @param {string} code
-* @returns {string}
-*/
-export function codekit_create_ean13(code: string): string;
-/**
-* @param {string} code
-* @returns {string}
-*/
-export function codekit_create_codabar(code: string): string;
-/**
-* @param {string} code
-* @returns {string}
-*/
-export function codekit_create_code39(code: string): string;
-/**
-* @param {string} code
-* @returns {string}
-*/
-export function codekit_create_code93(code: string): string;
-/**
-* @param {string} code
-* @returns {string}
-*/
-export function codekit_create_i2of5(code: string): string;
-/**
+* Draw the $t code in the canvas with the appropriate id
 * @param {string} canvas_id
 * @param {string} code
 * @param {number} bar_width
 * @param {number} height
 */
 export function codekit_draw_ean8(canvas_id: string, code: string, bar_width: number, height: number): void;
+/**
+* Create the string representation of the $t code
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_ean13(code: string): string;
+/**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_ean13(canvas_id: string, code: string, bar_width: number, height: number): void;
+/**
+* Create the string representation of the $t code
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_codabar(code: string): string;
+/**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_codabar(canvas_id: string, code: string, bar_width: number, height: number): void;
+/**
+* Create the string representation of the $t code
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_code39(code: string): string;
+/**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_code39(canvas_id: string, code: string, bar_width: number, height: number): void;
+/**
+* Create the string representation of the $t code
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_code93(code: string): string;
+/**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_code93(canvas_id: string, code: string, bar_width: number, height: number): void;
+/**
+* Create the string representation of the $t code
+* @param {string} code
+* @returns {string}
+*/
+export function codekit_create_i2of5(code: string): string;
+/**
+* Draw the $t code in the canvas with the appropriate id
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_i2of5(canvas_id: string, code: string, bar_width: number, height: number): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly codekit_create_ean8: (a: number, b: number, c: number) => void;
-  readonly codekit_create_ean13: (a: number, b: number, c: number) => void;
-  readonly codekit_create_codabar: (a: number, b: number, c: number) => void;
-  readonly codekit_create_code39: (a: number, b: number, c: number) => void;
-  readonly codekit_create_code93: (a: number, b: number, c: number) => void;
-  readonly codekit_create_i2of5: (a: number, b: number, c: number) => void;
   readonly codekit_draw_ean8: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+  readonly codekit_create_ean13: (a: number, b: number, c: number) => void;
+  readonly codekit_draw_ean13: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+  readonly codekit_create_codabar: (a: number, b: number, c: number) => void;
+  readonly codekit_draw_codabar: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+  readonly codekit_create_code39: (a: number, b: number, c: number) => void;
+  readonly codekit_draw_code39: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+  readonly codekit_create_code93: (a: number, b: number, c: number) => void;
+  readonly codekit_draw_code93: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
+  readonly codekit_create_i2of5: (a: number, b: number, c: number) => void;
+  readonly codekit_draw_i2of5: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
