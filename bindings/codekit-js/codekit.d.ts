@@ -30,6 +30,13 @@ export function codekit_create_code93(code: string): string;
 * @returns {string}
 */
 export function codekit_create_i2of5(code: string): string;
+/**
+* @param {string} canvas_id
+* @param {string} code
+* @param {number} bar_width
+* @param {number} height
+*/
+export function codekit_draw_ean8(canvas_id: string, code: string, bar_width: number, height: number): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -41,10 +48,12 @@ export interface InitOutput {
   readonly codekit_create_code39: (a: number, b: number, c: number) => void;
   readonly codekit_create_code93: (a: number, b: number, c: number) => void;
   readonly codekit_create_i2of5: (a: number, b: number, c: number) => void;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly codekit_draw_ean8: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

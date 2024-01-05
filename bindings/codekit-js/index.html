@@ -4,18 +4,21 @@
     <meta charset="utf-8" />
     <title>codekit-wasm example</title>
   </head>
-  <body>
+  <body>    
     <script type="module">
-      import init, { codekit_create_ean8 }  from "./codekit.js";
+      import init, { codekit_create_ean8, codekit_draw_ean8 }  from "./codekit.js";
       init().then(() => {
 
+      
         try {
-            var code = codekit_create_ean8("65833254");
-            alert("Code: " + code);
+          codekit_draw_ean8('drawing', '65833254', 2, 100);
         } catch (e) {
-            alert("Invalid code");
+          alert("Invalid code " + e)
         }
+         
       });
     </script>
+
+    <canvas id="drawing"></canvas>
   </body>
 </html>
